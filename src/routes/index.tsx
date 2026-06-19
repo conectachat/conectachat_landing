@@ -57,7 +57,8 @@ function Landing() {
           return;
         }
       } catch {}
-      window.location.href = `/entrar?modo=signup&plano=${plano}`;
+      const modo = plano && plano !== "pro" ? "signup" : (arguments.length > 1 ? "signup" : "login");
+      window.location.href = `/entrar?modo=${modo}&plano=${plano}`;
       return;
     }
     window.location.href = path;

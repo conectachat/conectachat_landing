@@ -25,7 +25,7 @@ export const Route = createFileRoute("/entrar")({
   ssr: false,
   head: () => ({ meta: [{ title: `${brand.name} — Começar` }] }),
   validateSearch: (s: Record<string, unknown>): Search => ({
-    modo: s.modo === "login" ? "login" : "signup",
+    modo: s.modo === "signup" ? "signup" : "login",
     plano: typeof s.plano === "string" ? s.plano : undefined,
   }),
   beforeLoad: async ({ search }) => {
@@ -57,7 +57,7 @@ function EntrarPage() {
   const search = useSearch({ from: "/entrar" }) as Search;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [needsPassword, setNeedsPassword] = useState(search.modo === "login");
+  const [needsPassword, setNeedsPassword] = useState(search.modo !== "signup");
   const [loading, setLoading] = useState(false);
 
   const planInfo = search.plano ? PLAN_LABEL[search.plano] : null;
