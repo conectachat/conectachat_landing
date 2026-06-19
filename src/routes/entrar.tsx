@@ -288,6 +288,33 @@ function EntrarPage() {
                       Sem cartão para começar os <span className="font-semibold text-foreground">3 dias grátis</span>. Cancele quando quiser.
                     </p>
                   )}
+
+                  <div className="text-center text-[12.5px] text-muted-foreground pt-2 border-t border-[color:var(--hairline)] mt-2">
+                    {needsPassword ? (
+                      <>
+                        Ainda não tem conta?{" "}
+                        <button
+                          type="button"
+                          onClick={() => { setNeedsPassword(false); setPassword(""); }}
+                          className="font-semibold text-[color:var(--brand-text)] hover:underline"
+                        >
+                          Criar conta grátis
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        Já tem uma conta?{" "}
+                        <button
+                          type="button"
+                          onClick={() => setNeedsPassword(true)}
+                          className="font-semibold text-[color:var(--brand-text)] hover:underline"
+                        >
+                          Entrar
+                        </button>
+                      </>
+                    )}
+                  </div>
+
                 </form>
               </div>
             </div>
