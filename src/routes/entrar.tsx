@@ -253,7 +253,7 @@ function EntrarPage() {
                       id="email"
                       type="email"
                       value={email}
-                      onChange={(e) => { setEmail(e.target.value); if (needsPassword) setNeedsPassword(false); }}
+                      onChange={(e) => setEmail(e.target.value)}
                       required
                       autoFocus
                       placeholder="voce@empresa.com"
