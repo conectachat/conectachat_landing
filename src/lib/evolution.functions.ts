@@ -119,7 +119,17 @@ export const checkWhatsappStatus = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
     const { supabase, userId } = context;
-    const companyId = await resolveCompanyId(supabase, userId);
+    // Sem empresa ainda (pré-onboarding): retorna estado neutro em vez de quebrar
+    const { data: cu } = await supabase
+      .from("company_user")
+      .select("company_id")
+      .eq("user_id", userId)
+      .eq("ativo", true)
+      .order("created_at", { ascending: true })
+      .limit(1)
+      .maybeSingle();
+    if (!cu) return { status: "disconnected", state: null, numero: null, qrBase64: null, code: null };
+    const companyId = cu.company_id as string;
     const { evoState, evoFetchNumberFromInstance, evoSetWebhook } = await import("./evolution.server");
 
     const { data: row } = await (supabase as any)
