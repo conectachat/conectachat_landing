@@ -25,7 +25,7 @@ export const Route = createFileRoute("/entrar")({
   ssr: false,
   head: () => ({ meta: [{ title: `${brand.name} — Começar` }] }),
   validateSearch: (s: Record<string, unknown>): Search => ({
-    modo: s.modo === "login" ? "login" : "signup",
+    modo: s.modo === "signup" ? "signup" : "login",
     plano: typeof s.plano === "string" ? s.plano : undefined,
   }),
   beforeLoad: async ({ search }) => {
@@ -57,7 +57,7 @@ function EntrarPage() {
   const search = useSearch({ from: "/entrar" }) as Search;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [needsPassword, setNeedsPassword] = useState(search.modo === "login");
+  const [needsPassword, setNeedsPassword] = useState(search.modo !== "signup");
   const [loading, setLoading] = useState(false);
 
   const planInfo = search.plano ? PLAN_LABEL[search.plano] : null;
@@ -253,7 +253,7 @@ function EntrarPage() {
                       id="email"
                       type="email"
                       value={email}
-                      onChange={(e) => { setEmail(e.target.value); if (needsPassword) setNeedsPassword(false); }}
+                      onChange={(e) => setEmail(e.target.value)}
                       required
                       autoFocus
                       placeholder="voce@empresa.com"
@@ -288,6 +288,33 @@ function EntrarPage() {
                       Sem cartão para começar os <span className="font-semibold text-foreground">3 dias grátis</span>. Cancele quando quiser.
                     </p>
                   )}
+
+                  <div className="text-center text-[12.5px] text-muted-foreground pt-2 border-t border-[color:var(--hairline)] mt-2">
+                    {needsPassword ? (
+                      <>
+                        Ainda não tem conta?{" "}
+                        <button
+                          type="button"
+                          onClick={() => { setNeedsPassword(false); setPassword(""); }}
+                          className="font-semibold text-[color:var(--brand-text)] hover:underline"
+                        >
+                          Criar conta grátis
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        Já tem uma conta?{" "}
+                        <button
+                          type="button"
+                          onClick={() => setNeedsPassword(true)}
+                          className="font-semibold text-[color:var(--brand-text)] hover:underline"
+                        >
+                          Entrar
+                        </button>
+                      </>
+                    )}
+                  </div>
+
                 </form>
               </div>
             </div>

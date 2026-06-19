@@ -1,19 +1,9 @@
-## Problema
+Vou ajustar o fluxo de autenticação para não prender o usuário master na tela de cadastro.
 
-A tela mostra "Signups not allowed for this instance". O Auth do projeto está com cadastros desativados (`disable_signup = true`), então mesmo o primeiro usuário não consegue se registrar.
-
-## Plano
-
-1. Habilitar signups no Auth (`disable_signup: false`), mantendo:
-   - Sem login anônimo
-   - Sem auto-confirmação de e-mail (a menos que você peça)
-   - Proteção de senha vazada (HIBP) ligada
-2. Você refaz o cadastro com `renato_usa00@yahoo.com` na tela `/entrar?modo=signup`.
-3. O gatilho `handle_new_user` promove esse primeiro usuário a `super_admin` automaticamente.
-4. (Opcional, recomendado) Depois que o admin master estiver criado, posso voltar a desativar signups públicos para que novos usuários só entrem via fluxo de pagamento/convite.
-
-## Detalhes técnicos
-
-- Ferramenta: `supabase--configure_auth` com `disable_signup: false`.
-- Sem mudanças de schema, código ou RLS.
-- Se você quiser pular a confirmação por e-mail só para esse primeiro cadastro, posso ativar `auto_confirm_email` temporariamente — me avise.
+Plano:
+1. Alterar `/entrar` para abrir em modo **login** por padrão quando não houver `modo=signup` explícito.
+2. Adicionar na própria tela `/entrar?modo=signup&plano=pro` uma opção clara de alternar para **“Já tenho uma conta / Entrar”**, preservando o plano escolhido na URL.
+3. Ajustar o botão **Entrar** da landing page para ir para `/entrar?modo=login`, em vez de cair no cadastro com plano.
+4. Manter os botões dos planos como cadastro/trial (`modo=signup&plano=...`) para novos clientes.
+5. Revisar a troca de e-mail no formulário para não esconder o campo de senha indevidamente quando o usuário está em modo login.
+6. Validar no preview que clicar em **Entrar** mostra campo de senha e permite usar o e-mail master com a senha definida.
