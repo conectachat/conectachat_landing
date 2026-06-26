@@ -107,10 +107,15 @@ function ConexaoPage() {
               {numero && <span className="text-sm text-muted-foreground">· {numero}</span>}
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
             <Button variant="outline" size="sm" onClick={() => doCheck()} disabled={loading}>
               <RefreshCw className="size-4 mr-1.5" /> Atualizar
             </Button>
+            {status === "connected" && (
+              <Button variant="outline" size="sm" onClick={doResync} disabled={loading}>
+                <RefreshCw className="size-4 mr-1.5" /> Reaplicar webhook
+              </Button>
+            )}
             {status === "connected" ? (
               <Button variant="destructive" size="sm" onClick={doDisconnect} disabled={loading}>
                 <Power className="size-4 mr-1.5" /> Desconectar
@@ -123,6 +128,12 @@ function ConexaoPage() {
             )}
           </div>
         </div>
+
+        {webhookUrl && (
+          <div className="mb-4 text-xs text-muted-foreground break-all">
+            URL configurada no Evolution: <code className="font-mono">{webhookUrl}</code>
+          </div>
+        )}
 
         {qr ? (
           <div className="grid md:grid-cols-2 gap-6 items-center">
