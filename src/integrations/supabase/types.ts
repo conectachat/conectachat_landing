@@ -73,6 +73,7 @@ export type Database = {
           antecedencia_min: string
           anthropic_api_key: string
           apresentacao: string
+          ativo: boolean
           como_vender: string
           company_id: string
           cupom: string
@@ -93,6 +94,8 @@ export type Database = {
           palavra_despausar: string
           palavra_pausar: string
           papel_objetivo: string
+          pausado_em: string | null
+          pausado_por: string | null
           pedir_avaliacao: boolean
           pode_fazer: string
           politicas: string
@@ -121,6 +124,7 @@ export type Database = {
           antecedencia_min?: string
           anthropic_api_key?: string
           apresentacao?: string
+          ativo?: boolean
           como_vender?: string
           company_id: string
           cupom?: string
@@ -141,6 +145,8 @@ export type Database = {
           palavra_despausar?: string
           palavra_pausar?: string
           papel_objetivo?: string
+          pausado_em?: string | null
+          pausado_por?: string | null
           pedir_avaliacao?: boolean
           pode_fazer?: string
           politicas?: string
@@ -169,6 +175,7 @@ export type Database = {
           antecedencia_min?: string
           anthropic_api_key?: string
           apresentacao?: string
+          ativo?: boolean
           como_vender?: string
           company_id?: string
           cupom?: string
@@ -189,6 +196,8 @@ export type Database = {
           palavra_despausar?: string
           palavra_pausar?: string
           papel_objetivo?: string
+          pausado_em?: string | null
+          pausado_por?: string | null
           pedir_avaliacao?: boolean
           pode_fazer?: string
           politicas?: string

@@ -58,6 +58,8 @@ function AgentePage() {
   const [palavraPausar, setPalavraPausar] = useState("/pausar");
   const [palavraDespausar, setPalavraDespausar] = useState("/despausar");
   const [responderEmPartes, setResponderEmPartes] = useState(true);
+  const [ativo, setAtivo] = useState(true);
+  const [togglingAtivo, setTogglingAtivo] = useState(false);
 
   const [testMsg, setTestMsg] = useState("Oi, vocês entregam aqui?");
   const [testReply, setTestReply] = useState<string[]>([]);
@@ -74,9 +76,11 @@ function AgentePage() {
       setPalavraPausar(data.palavra_pausar || "/pausar");
       setPalavraDespausar(data.palavra_despausar || "/despausar");
       setResponderEmPartes(data.responder_em_partes ?? true);
+      setAtivo((data as any).ativo ?? true);
       setPromptPreview(buildSystemPrompt(data as any, { responderEmPartes: data.responder_em_partes ?? true, produtos: [] }));
     } else if (data) {
       setCfg(data);
+      setAtivo((data as any).ativo ?? true);
     }
     setLoading(false);
   }
@@ -161,6 +165,32 @@ function AgentePage() {
       setTestReply(r.parts);
     } catch (e: any) { toast.error(e?.message || "Falha"); }
     finally { setTesting(false); }
+  }
+
+  async function toggleAtivo(next: boolean) {
+    if (!companyId) return;
+    if (!next) {
+      const ok = window.confirm("Pausar o Agente IA? Novas mensagens recebidas no WhatsApp não serão respondidas automaticamente até você reativar.");
+      if (!ok) return;
+    }
+    setTogglingAtivo(true);
+    const prev = ativo;
+    setAtivo(next);
+    const { error } = await supabase
+      .from("agent_config")
+      .update({
+        ativo: next,
+        pausado_em: next ? null : new Date().toISOString(),
+        pausado_por: next ? null : ctx.user.id,
+      } as any)
+      .eq("company_id", companyId);
+    setTogglingAtivo(false);
+    if (error) {
+      setAtivo(prev);
+      return toast.error(error.message);
+    }
+    setCfg((c: any) => (c ? { ...c, ativo: next } : c));
+    toast.success(next ? "Agente IA ativado" : "Agente IA pausado");
   }
 
   if (loading) return <div className="grid place-items-center h-40 text-muted-foreground"><Loader2 className="animate-spin" /></div>;
@@ -313,6 +343,48 @@ function AgentePage() {
           </Button>
         </div>
       </header>
+
+      <div
+        className={`rounded-2xl border p-4 flex items-center justify-between gap-4 flex-wrap ${
+          ativo
+            ? "border-[var(--border)] bg-[var(--panel)]"
+            : "border-amber-500/40 bg-amber-500/10"
+        }`}
+      >
+        <div className="flex items-center gap-3">
+          <span className="relative inline-flex">
+            <span
+              className="size-2.5 rounded-full"
+              style={{ background: ativo ? "#00E676" : "#FFB020" }}
+            />
+            {ativo && (
+              <span
+                className="absolute inset-0 size-2.5 rounded-full animate-ping"
+                style={{ background: "#00E676", opacity: 0.6 }}
+              />
+            )}
+          </span>
+          <div>
+            <div className="font-display text-sm font-semibold">
+              Agente IA: {ativo ? "Ativo" : "Pausado"}
+            </div>
+            <div className="text-xs text-muted-foreground">
+              {ativo
+                ? "Respondendo novas mensagens automaticamente no WhatsApp."
+                : "A IA não vai responder novas mensagens até você reativar."}
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          {togglingAtivo && <Loader2 className="size-3.5 animate-spin text-muted-foreground" />}
+          <Switch
+            checked={ativo}
+            disabled={togglingAtivo}
+            onCheckedChange={toggleAtivo}
+            aria-label="Ativar ou pausar Agente IA"
+          />
+        </div>
+      </div>
 
       <div className="grid lg:grid-cols-[1fr_minmax(340px,400px)] gap-6">
         <div className="space-y-4">

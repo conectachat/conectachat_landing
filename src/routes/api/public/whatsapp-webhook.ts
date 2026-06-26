@@ -143,6 +143,12 @@ export const Route = createFileRoute("/api/public/whatsapp-webhook")({
             return new Response("paused-contact", { status: 200 });
           }
 
+          // Gate global: Agente IA pausado pela empresa
+          if ((cfg as any)?.ativo === false) {
+            await upsertCard(supabaseAdmin, companyId, userId, number, pushName, text, stages);
+            return new Response("agent-disabled", { status: 200 });
+          }
+
           const bufferSec = Math.max(0, Math.min(20, Number(cfg?.segundos_buffer ?? 8)));
           if (bufferSec > 0) {
             await new Promise((r) => setTimeout(r, bufferSec * 1000));
