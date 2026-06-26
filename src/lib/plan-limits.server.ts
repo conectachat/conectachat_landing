@@ -56,7 +56,7 @@ export async function getCompanyPlan(companyId: string): Promise<CompanyPlan> {
     slug,
     nome: row?.nome || PLAN_LABEL[slug],
     limites: {
-      instancias: 1,
+      instancias: Number(row?.limite_instancias ?? 1),
       usuarios: Number(row?.limite_usuarios ?? 1),
       contatos: Number(row?.limite_contatos ?? 1000),
       mensagens: Number(row?.limite_mensagens ?? 1500),

@@ -37,7 +37,7 @@ export function usePlanFeatures(): PlanUsageState {
     slug,
     planName: state?.plan?.nome || "Starter",
     features: featuresFor(slug),
-    limites: { ...(state?.plan?.limites || { usuarios: 1, contatos: 1000, mensagens: 1500 }), instancias: 1 },
+    limites: state?.plan?.limites || { instancias: 1, usuarios: 1, contatos: 1000, mensagens: 1500 },
     usage: state?.usage || { instancias: 0, usuarios: 0, contatos: 0, mensagens: 0 },
     refresh: load,
   };
