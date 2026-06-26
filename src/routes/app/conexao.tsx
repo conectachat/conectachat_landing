@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Loader2, RefreshCw, Power, QrCode } from "lucide-react";
 import { brand } from "@/config/brand";
-import { connectWhatsapp, checkWhatsappStatus, disconnectWhatsapp } from "@/lib/evolution.functions";
+import { connectWhatsapp, checkWhatsappStatus, disconnectWhatsapp, resyncWhatsappWebhook } from "@/lib/evolution.functions";
 import { usePlanFeatures } from "@/hooks/use-plan-features";
 import { PlanUsageBadge } from "@/components/plan-usage-badge";
 
@@ -20,12 +20,14 @@ function ConexaoPage() {
   const connect = useServerFn(connectWhatsapp);
   const check = useServerFn(checkWhatsappStatus);
   const disconnect = useServerFn(disconnectWhatsapp);
+  const resync = useServerFn(resyncWhatsappWebhook);
   const plan = usePlanFeatures();
 
   const [loading, setLoading] = useState(false);
   const [qr, setQr] = useState<string | null>(null);
   const [status, setStatus] = useState<string>("disconnected");
   const [numero, setNumero] = useState<string | null>(null);
+  const [webhookUrl, setWebhookUrl] = useState<string | null>(null);
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
@@ -78,6 +80,16 @@ function ConexaoPage() {
     finally { setLoading(false); }
   }
 
+  async function doResync() {
+    setLoading(true);
+    try {
+      const r = await resync();
+      setWebhookUrl(r.webhookUrl);
+      toast.success("Webhook reaplicado");
+    } catch (e: any) { toast.error(e?.message || "Falha ao reaplicar webhook"); }
+    finally { setLoading(false); }
+  }
+
   const statusBadge =
     status === "connected" ? <Badge className="bg-primary">Conectado</Badge>
     : status === "connecting" ? <Badge variant="secondary" className="bg-amber-500/15 text-amber-700">Conectando…</Badge>
@@ -105,10 +117,15 @@ function ConexaoPage() {
               {numero && <span className="text-sm text-muted-foreground">· {numero}</span>}
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
             <Button variant="outline" size="sm" onClick={() => doCheck()} disabled={loading}>
               <RefreshCw className="size-4 mr-1.5" /> Atualizar
             </Button>
+            {status === "connected" && (
+              <Button variant="outline" size="sm" onClick={doResync} disabled={loading}>
+                <RefreshCw className="size-4 mr-1.5" /> Reaplicar webhook
+              </Button>
+            )}
             {status === "connected" ? (
               <Button variant="destructive" size="sm" onClick={doDisconnect} disabled={loading}>
                 <Power className="size-4 mr-1.5" /> Desconectar
@@ -121,6 +138,12 @@ function ConexaoPage() {
             )}
           </div>
         </div>
+
+        {webhookUrl && (
+          <div className="mb-4 text-xs text-muted-foreground break-all">
+            URL configurada no Evolution: <code className="font-mono">{webhookUrl}</code>
+          </div>
+        )}
 
         {qr ? (
           <div className="grid md:grid-cols-2 gap-6 items-center">
