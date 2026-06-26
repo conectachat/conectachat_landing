@@ -167,6 +167,31 @@ function AgentePage() {
     finally { setTesting(false); }
   }
 
+  async function toggleAtivo(next: boolean) {
+    if (!companyId) return;
+    if (!next) {
+      const ok = window.confirm("Pausar o Agente IA? Novas mensagens recebidas no WhatsApp não serão respondidas automaticamente até você reativar.");
+      if (!ok) return;
+    }
+    setTogglingAtivo(true);
+    const prev = ativo;
+    setAtivo(next);
+    const { error } = await supabase
+      .from("agent_config")
+      .update({
+        ativo: next,
+        pausado_em: next ? null : new Date().toISOString(),
+        pausado_por: next ? null : ctx.user.id,
+      } as any)
+      .eq("company_id", companyId);
+    setTogglingAtivo(false);
+    if (error) {
+      setAtivo(prev);
+      return toast.error(error.message);
+    }
+    toast.success(next ? "Agente IA ativado" : "Agente IA pausado");
+  }
+
   if (loading) return <div className="grid place-items-center h-40 text-muted-foreground"><Loader2 className="animate-spin" /></div>;
 
   // ---------- Tela inicial: descrição livre → análise PRD ----------
