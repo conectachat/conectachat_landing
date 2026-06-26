@@ -58,6 +58,8 @@ function AgentePage() {
   const [palavraPausar, setPalavraPausar] = useState("/pausar");
   const [palavraDespausar, setPalavraDespausar] = useState("/despausar");
   const [responderEmPartes, setResponderEmPartes] = useState(true);
+  const [ativo, setAtivo] = useState(true);
+  const [togglingAtivo, setTogglingAtivo] = useState(false);
 
   const [testMsg, setTestMsg] = useState("Oi, vocês entregam aqui?");
   const [testReply, setTestReply] = useState<string[]>([]);
