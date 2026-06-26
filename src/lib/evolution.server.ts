@@ -43,6 +43,11 @@ async function evo<T = any>(
   }
   if (!res.ok) {
     const msg = data?.message || data?.error || text || `HTTP ${res.status}`;
+    if (res.status === 401 || res.status === 403) {
+      throw new Error(
+        `Servidor WhatsApp recusou autenticação (HTTP ${res.status}). Verifique EVOLUTION_API_KEY/URL nos segredos do backend, ou se a instância já existe com outra chave no servidor Evolution.${SUPPORT_SUFFIX}`,
+      );
+    }
     throw new Error(`Evolution API: ${msg}.${SUPPORT_SUFFIX}`);
   }
   return data as T;
