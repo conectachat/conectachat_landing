@@ -109,7 +109,10 @@ export const connectWhatsapp = createServerFn({ method: "POST" })
     }
 
     if (!qrBase64 && !code && lastQrError) {
-      throw lastQrError;
+      // Se /instance/connect também falhou, propaga o erro mais informativo:
+      // se o /create já tinha falhado (ex.: Forbidden por chave inválida),
+      // esse é o erro raiz que o usuário precisa ver.
+      throw createFailed && createError ? createError : lastQrError;
     }
 
     let state: string | undefined;
