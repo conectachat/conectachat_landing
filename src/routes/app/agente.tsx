@@ -189,6 +189,7 @@ function AgentePage() {
       setAtivo(prev);
       return toast.error(error.message);
     }
+    setCfg((c: any) => (c ? { ...c, ativo: next } : c));
     toast.success(next ? "Agente IA ativado" : "Agente IA pausado");
   }
 
