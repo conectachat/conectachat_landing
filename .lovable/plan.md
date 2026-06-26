@@ -1,30 +1,37 @@
 ## Diagnóstico
 
-**1. Badge "1/1 — Fazer upgrade" mesmo no Business**
-- `src/lib/plan-limits.server.ts` força `limites.instancias: 1` na linha 59, ignorando o `limite_instancias` da tabela `plan`.
-- Além disso, os 3 planos hoje têm `limite_instancias = 1` no banco.
+O erro **"Evolution API: Forbidden"** vem do servidor Evolution (não do nosso app). Aconteceu ao clicar em **Conectar WhatsApp**, durante a chamada `POST /instance/create` (ou `/instance/connect`).
 
-**2. Mensagem não chega na caixa de entrada**
-- Tabela `mensagens` está vazia, ou seja, o webhook do Evolution não está entregando POSTs para a nossa rota `/api/public/whatsapp-webhook`.
-- `webhook_configured_at` já está preenchido, então a URL gravada na instância Evolution é a do host que estava ativo na hora do "Conectar" (provavelmente o preview antigo) e nunca foi reaplicada para o host atual.
+`Forbidden` da Evolution API significa **uma destas três coisas**, nessa ordem de probabilidade:
 
-## Correções
+1. **`EVOLUTION_API_KEY` inválida ou expirada** — a chave salva nos segredos do backend não corresponde à `AUTHENTICATION_API_KEY` configurada no servidor Evolution. É a causa mais comum.
+2. **`EVOLUTION_API_URL` apontando para o servidor errado** — URL antiga / outro tenant que não reconhece essa key.
+3. **Servidor Evolution com política de IP/origem** bloqueando o Worker da Lovable (raro, mas possível em self-host com firewall).
 
-### A. Limites de números por plano (Starter 1 · Pro 3 · Business 10)
-1. Migration: `UPDATE public.plan SET limite_instancias = 3 WHERE slug='pro'; UPDATE ... 10 WHERE slug='business';` (Starter já é 1).
-2. `src/lib/plan-limits.server.ts`: substituir `instancias: 1` por `Number(row?.limite_instancias ?? 1)`.
+Nenhuma das três é corrigida em código — todas são config do servidor Evolution.
 
-### B. Reaplicar webhook do WhatsApp
-1. Nova server fn `resyncWhatsappWebhook` em `src/lib/evolution.functions.ts`: resolve company, recalcula `buildWebhookUrl(token)` usando o host atual da requisição, chama `evoSetWebhook(instanceName, url)` e grava `webhook_configured_at = now()`. Retorna `{ webhookUrl }`.
-2. `src/routes/app/conexao.tsx`:
-   - Botão "Reaplicar webhook" (visível quando `status === 'connected'`) que chama a fn e mostra toast com a URL aplicada.
-   - Exibir a `webhookUrl` retornada num pequeno bloco "URL configurada no Evolution: …" para o usuário conferir que bate com o domínio onde está logado (preview vs publicado).
-3. Sem alterar o fluxo do webhook em si — só garantir que o Evolution conhece a URL certa do ambiente atual.
+## Plano de ação
 
-### C. Validação
-- Após aplicar: abrir `/app/conexao`, clicar "Reaplicar webhook", enviar uma mensagem ao número conectado e conferir `select count(*) from mensagens` + `/app/conversas`.
-- Badge deve mostrar `1/10 números` (Business) sem o aviso "Fazer upgrade".
+### Passo 1 — Confirmar qual chamada falhou (logs)
+Ler os logs do server function `connectWhatsapp` para ver exatamente em qual endpoint Evolution retornou 403 (`/instance/create`, `/instance/connect` ou `/webhook/set`). Isso confirma se é auth global ou permissão por instância.
 
-## Fora de escopo
-- Não mexer no fluxo do agente IA, no parser de payload do Evolution, nem em RLS.
-- Não tocar nos limites de mensagens/contatos/usuários dos planos.
+### Passo 2 — Verificar segredos
+Listar os segredos `EVOLUTION_API_URL` e `EVOLUTION_API_KEY` (sem expor valor) para confirmar que estão presentes e que a URL não tem typo / barra a mais / protocolo errado.
+
+### Passo 3 — Teste direto na Evolution
+Disparar um `GET {EVOLUTION_API_URL}/instance/fetchInstances` com a chave atual a partir do servidor. Três cenários:
+- **200 OK** → a chave funciona; o 403 é por instância específica. Solução: apagar a instância `atendezap_<companyId>` órfã no painel Evolution e reconectar.
+- **401/403** → chave inválida. Solução: atualizar `EVOLUTION_API_KEY` para o valor correto da `AUTHENTICATION_API_KEY` no `.env` do servidor Evolution.
+- **Timeout / DNS** → URL errada. Solução: atualizar `EVOLUTION_API_URL`.
+
+### Passo 4 — Melhoria de UX (pequena, opcional)
+No `evolution.server.ts`, quando a Evolution responder 401/403, traduzir a mensagem para algo mais acionável tipo: *"Servidor WhatsApp recusou a autenticação. Verifique EVOLUTION_API_KEY/URL nos segredos."* — ajuda no próximo erro, mas **não resolve o atual**.
+
+## O que NÃO vou fazer
+
+- Não vou trocar a chave inventando um valor — preciso que você confirme/forneça a chave correta do seu servidor Evolution.
+- Não vou mexer no fluxo de conexão antes de confirmar pelos logs em qual endpoint o 403 caiu.
+
+## Resultado esperado
+
+Depois do Passo 3, saberemos exatamente qual segredo precisa ser corrigido. Se for chave/URL, eu te peço o valor novo via `update_secret` (formulário seguro). Se for instância órfã, te oriento a apagar no painel da Evolution e tentar conectar de novo.
