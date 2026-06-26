@@ -77,12 +77,18 @@ export const connectWhatsapp = createServerFn({ method: "POST" })
         { onConflict: "company_id" },
       );
 
+    let createFailed = false;
+    let createError: any = null;
     try {
       await evoCreateInstance(instanceName, webhookUrl);
     } catch (e: any) {
+      createError = e;
       const msg = String(e?.message || "");
-      if (!/exists|already/i.test(msg)) console.warn("[evolution.create]", msg);
-      if (!/exists|already/i.test(msg)) throw e;
+      console.warn("[evolution.create]", msg);
+      // Algumas versões da Evolution retornam Forbidden/Conflict quando a
+      // instância já existe. Não relançamos aqui — tentamos /instance/connect
+      // a seguir; se ele também falhar, propagamos o erro original.
+      createFailed = true;
     }
 
     if (webhookUrl) {
