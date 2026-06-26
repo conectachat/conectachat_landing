@@ -343,6 +343,48 @@ function AgentePage() {
         </div>
       </header>
 
+      <div
+        className={`rounded-2xl border p-4 flex items-center justify-between gap-4 flex-wrap ${
+          ativo
+            ? "border-[var(--border)] bg-[var(--panel)]"
+            : "border-amber-500/40 bg-amber-500/10"
+        }`}
+      >
+        <div className="flex items-center gap-3">
+          <span className="relative inline-flex">
+            <span
+              className="size-2.5 rounded-full"
+              style={{ background: ativo ? "#00E676" : "#FFB020" }}
+            />
+            {ativo && (
+              <span
+                className="absolute inset-0 size-2.5 rounded-full animate-ping"
+                style={{ background: "#00E676", opacity: 0.6 }}
+              />
+            )}
+          </span>
+          <div>
+            <div className="font-display text-sm font-semibold">
+              Agente IA: {ativo ? "Ativo" : "Pausado"}
+            </div>
+            <div className="text-xs text-muted-foreground">
+              {ativo
+                ? "Respondendo novas mensagens automaticamente no WhatsApp."
+                : "A IA não vai responder novas mensagens até você reativar."}
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          {togglingAtivo && <Loader2 className="size-3.5 animate-spin text-muted-foreground" />}
+          <Switch
+            checked={ativo}
+            disabled={togglingAtivo}
+            onCheckedChange={toggleAtivo}
+            aria-label="Ativar ou pausar Agente IA"
+          />
+        </div>
+      </div>
+
       <div className="grid lg:grid-cols-[1fr_minmax(340px,400px)] gap-6">
         <div className="space-y-4">
           <Section title="O que a IA aprendeu" icon={<Sparkles className="size-3.5" />}>
