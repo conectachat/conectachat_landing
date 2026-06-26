@@ -76,9 +76,11 @@ function AgentePage() {
       setPalavraPausar(data.palavra_pausar || "/pausar");
       setPalavraDespausar(data.palavra_despausar || "/despausar");
       setResponderEmPartes(data.responder_em_partes ?? true);
+      setAtivo((data as any).ativo ?? true);
       setPromptPreview(buildSystemPrompt(data as any, { responderEmPartes: data.responder_em_partes ?? true, produtos: [] }));
     } else if (data) {
       setCfg(data);
+      setAtivo((data as any).ativo ?? true);
     }
     setLoading(false);
   }
