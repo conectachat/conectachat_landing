@@ -80,6 +80,16 @@ function ConexaoPage() {
     finally { setLoading(false); }
   }
 
+  async function doResync() {
+    setLoading(true);
+    try {
+      const r = await resync();
+      setWebhookUrl(r.webhookUrl);
+      toast.success("Webhook reaplicado");
+    } catch (e: any) { toast.error(e?.message || "Falha ao reaplicar webhook"); }
+    finally { setLoading(false); }
+  }
+
   const statusBadge =
     status === "connected" ? <Badge className="bg-primary">Conectado</Badge>
     : status === "connecting" ? <Badge variant="secondary" className="bg-amber-500/15 text-amber-700">Conectando…</Badge>
