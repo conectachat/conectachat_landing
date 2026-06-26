@@ -115,6 +115,29 @@ export const connectWhatsapp = createServerFn({ method: "POST" })
     return { instanceName, qrBase64, code, state, webhookUrl };
   });
 
+export const resyncWhatsappWebhook = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const { supabase, userId } = context;
+    const companyId = await resolveCompanyId(supabase, userId);
+    const { evoSetWebhook } = await import("./evolution.server");
+    const { data: row } = await (supabase as any)
+      .from("whatsapp_instances")
+      .select("instance_name, webhook_token")
+      .eq("company_id", companyId)
+      .maybeSingle();
+    if (!row?.instance_name) throw new Error("Nenhuma instância encontrada. Conecte o WhatsApp primeiro.");
+    const token = row.webhook_token || crypto.randomUUID();
+    const webhookUrl = buildWebhookUrl(token);
+    if (!webhookUrl) throw new Error("Não foi possível determinar a URL pública do app.");
+    await evoSetWebhook(row.instance_name, webhookUrl);
+    await supabase
+      .from("whatsapp_instances")
+      .update({ webhook_token: token, webhook_configured_at: new Date().toISOString() } as any)
+      .eq("company_id", companyId);
+    return { webhookUrl };
+  });
+
 export const checkWhatsappStatus = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
