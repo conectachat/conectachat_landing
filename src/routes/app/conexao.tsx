@@ -20,12 +20,14 @@ function ConexaoPage() {
   const connect = useServerFn(connectWhatsapp);
   const check = useServerFn(checkWhatsappStatus);
   const disconnect = useServerFn(disconnectWhatsapp);
+  const resync = useServerFn(resyncWhatsappWebhook);
   const plan = usePlanFeatures();
 
   const [loading, setLoading] = useState(false);
   const [qr, setQr] = useState<string | null>(null);
   const [status, setStatus] = useState<string>("disconnected");
   const [numero, setNumero] = useState<string | null>(null);
+  const [webhookUrl, setWebhookUrl] = useState<string | null>(null);
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
