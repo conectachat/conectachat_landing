@@ -51,6 +51,7 @@ import { Route as AppAgenteRouteImport } from './routes/app/agente'
 import { Route as AppAgenteAvancadoRouteImport } from './routes/app/agente.avancado'
 import { Route as ApiPublicWhatsappWebhookRouteImport } from './routes/api/public/whatsapp-webhook'
 import { Route as ApiPublicGoogleCallbackRouteImport } from './routes/api/public/google-callback'
+import { Route as ApiPublicDiagEvoRouteImport } from './routes/api/public/_diag-evo'
 import { Route as ApiPublicBillingWebhookRouteImport } from './routes/api/public/billing/webhook'
 
 const TrocarSenhaRoute = TrocarSenhaRouteImport.update({
@@ -264,6 +265,11 @@ const ApiPublicGoogleCallbackRoute = ApiPublicGoogleCallbackRouteImport.update({
   path: '/api/public/google-callback',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicDiagEvoRoute = ApiPublicDiagEvoRouteImport.update({
+  id: '/api/public/_diag-evo',
+  path: '/api/public',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicBillingWebhookRoute = ApiPublicBillingWebhookRouteImport.update({
   id: '/api/public/billing/webhook',
   path: '/api/public/billing/webhook',
@@ -310,6 +316,7 @@ export interface FileRoutesByFullPath {
   '/master/planos': typeof MasterPlanosRoute
   '/demo/': typeof DemoIndexRoute
   '/master/': typeof MasterIndexRoute
+  '/api/public': typeof ApiPublicDiagEvoRoute
   '/api/public/google-callback': typeof ApiPublicGoogleCallbackRoute
   '/api/public/whatsapp-webhook': typeof ApiPublicWhatsappWebhookRoute
   '/app/agente/avancado': typeof AppAgenteAvancadoRoute
@@ -353,6 +360,7 @@ export interface FileRoutesByTo {
   '/master/planos': typeof MasterPlanosRoute
   '/demo': typeof DemoIndexRoute
   '/master': typeof MasterIndexRoute
+  '/api/public': typeof ApiPublicDiagEvoRoute
   '/api/public/google-callback': typeof ApiPublicGoogleCallbackRoute
   '/api/public/whatsapp-webhook': typeof ApiPublicWhatsappWebhookRoute
   '/app/agente/avancado': typeof AppAgenteAvancadoRoute
@@ -399,6 +407,7 @@ export interface FileRoutesById {
   '/master/planos': typeof MasterPlanosRoute
   '/demo/': typeof DemoIndexRoute
   '/master/': typeof MasterIndexRoute
+  '/api/public/_diag-evo': typeof ApiPublicDiagEvoRoute
   '/api/public/google-callback': typeof ApiPublicGoogleCallbackRoute
   '/api/public/whatsapp-webhook': typeof ApiPublicWhatsappWebhookRoute
   '/app/agente/avancado': typeof AppAgenteAvancadoRoute
@@ -446,6 +455,7 @@ export interface FileRouteTypes {
     | '/master/planos'
     | '/demo/'
     | '/master/'
+    | '/api/public'
     | '/api/public/google-callback'
     | '/api/public/whatsapp-webhook'
     | '/app/agente/avancado'
@@ -489,6 +499,7 @@ export interface FileRouteTypes {
     | '/master/planos'
     | '/demo'
     | '/master'
+    | '/api/public'
     | '/api/public/google-callback'
     | '/api/public/whatsapp-webhook'
     | '/app/agente/avancado'
@@ -534,6 +545,7 @@ export interface FileRouteTypes {
     | '/master/planos'
     | '/demo/'
     | '/master/'
+    | '/api/public/_diag-evo'
     | '/api/public/google-callback'
     | '/api/public/whatsapp-webhook'
     | '/app/agente/avancado'
@@ -552,6 +564,7 @@ export interface RootRouteChildren {
   ResetSenhaRoute: typeof ResetSenhaRoute
   TermosRoute: typeof TermosRoute
   TrocarSenhaRoute: typeof TrocarSenhaRoute
+  ApiPublicDiagEvoRoute: typeof ApiPublicDiagEvoRoute
   ApiPublicGoogleCallbackRoute: typeof ApiPublicGoogleCallbackRoute
   ApiPublicWhatsappWebhookRoute: typeof ApiPublicWhatsappWebhookRoute
   ApiPublicBillingWebhookRoute: typeof ApiPublicBillingWebhookRoute
@@ -853,6 +866,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicGoogleCallbackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/_diag-evo': {
+      id: '/api/public/_diag-evo'
+      path: '/api/public'
+      fullPath: '/api/public'
+      preLoaderRoute: typeof ApiPublicDiagEvoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/billing/webhook': {
       id: '/api/public/billing/webhook'
       path: '/api/public/billing/webhook'
@@ -968,6 +988,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResetSenhaRoute: ResetSenhaRoute,
   TermosRoute: TermosRoute,
   TrocarSenhaRoute: TrocarSenhaRoute,
+  ApiPublicDiagEvoRoute: ApiPublicDiagEvoRoute,
   ApiPublicGoogleCallbackRoute: ApiPublicGoogleCallbackRoute,
   ApiPublicWhatsappWebhookRoute: ApiPublicWhatsappWebhookRoute,
   ApiPublicBillingWebhookRoute: ApiPublicBillingWebhookRoute,
