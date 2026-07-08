@@ -30,12 +30,12 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Conecte seu número de WhatsApp em 2 minutos. A IA do AtendeZap responde, qualifica e move cada lead no funil automaticamente. 3 dias grátis para testar.",
+          "Conecte seu número de WhatsApp em 2 minutos. A IA da ConectaChat responde, qualifica e move cada lead no funil automaticamente. 14 dias grátis para testar.",
       },
       { property: "og:title", content: `${brand.name} — WhatsApp + IA + CRM no automático` },
       {
         property: "og:description",
-        content: "Sua IA atende o WhatsApp 24h e organiza o CRM sozinha.",
+        content: "Conecte seu número de WhatsApp em 2 minutos. A IA da ConectaChat responde, qualifica e move cada lead no funil automaticamente. 14 dias grátis para testar.",
       },
     ],
   }),
