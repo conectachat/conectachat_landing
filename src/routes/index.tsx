@@ -1,6 +1,5 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
-import { brand } from "@/config/brand";
-import { supabase } from "@/integrations/supabase/client";
+import { createFileRoute } from "@tanstack/react-router";
+import { brand, appLoginUrl, appSignupUrl } from "@/config/brand";
 import { useEffect, useState } from "react";
 import {
   Zap,
@@ -43,30 +42,18 @@ export const Route = createFileRoute("/")({
 });
 
 function Landing() {
-  async function cta(path: "/entrar" | "/demo/dashboard" | "#planos", plano?: string) {
+  function cta(path: "/entrar" | "/demo/dashboard" | "#planos") {
     if (path === "#planos") {
       const el = document.getElementById("planos");
       if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
       return;
     }
+    // Login e cadastro vivem no app (domínio separado).
     if (path === "/entrar") {
-      try {
-        const { data } = await supabase.auth.getUser();
-        if (data.user) {
-          window.location.href = `/app/checkout?plano=${plano ?? "pro"}`;
-          return;
-        }
-      } catch {}
-      // Sem plano explícito = botão "Entrar" no header/CTA → modo login.
-      // Com plano = clicou num card de plano → modo signup (trial).
-      if (plano) {
-        window.location.href = `/entrar?modo=signup&plano=${plano}`;
-      } else {
-        window.location.href = `/entrar?modo=login`;
-      }
+      window.location.href = appLoginUrl;
       return;
     }
-    window.location.href = path;
+    window.location.href = appSignupUrl;
   }
 
   useScrollReveal();
@@ -946,6 +933,4 @@ function useTheme() {
   }
   return { isDark, toggle };
 }
-
-export const _unused = redirect;
 
