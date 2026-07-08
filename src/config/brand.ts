@@ -1,14 +1,16 @@
-// Branding centralizado. Troque aqui pra renomear/recolorir o app inteiro.
+// Branding centralizado. Troque aqui pra renomear/recolorir o site inteiro.
 export const brand = {
-  name: "AtendeZap",
-  tagline: "IA que atende seu WhatsApp 24/7 + CRM Kanban",
-  // WhatsApp green
-  primary: "#22C55E",
-  primaryOklch: "0.72 0.18 152",
+  name: "ConectaChat",
+  tagline: "Atendimento e vendas pelo WhatsApp com IA e CRM",
+  // Verde ConectaChat — destaque/CTA
+  primary: "#8FC549",
+  // Azul ConectaChat — títulos, links, texto de marca
+  secondary: "#0055A6",
 };
 
-// Suporte fixo — usado em rodapé, telas de erro e mensagens de falha.
-// Editar aqui troca em todos os pontos.
-export const supportWhatsapp = "5551982913030";
-export const supportWhatsappUrl = `https://wa.me/${supportWhatsapp}`;
-export const supportWhatsappDisplay = "(51) 98291-3030";
+// URLs do app (projeto separado — app.conectachat.online)
+export const appLoginUrl = "https://app.conectachat.online/login";
+export const appSignupUrl = "https://app.conectachat.online/cadastro";
+
+// Contato
+export const contactEmail = "contato@conectachat.online";

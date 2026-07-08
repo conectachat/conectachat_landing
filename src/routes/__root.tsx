@@ -12,29 +12,29 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
-import { supportWhatsappUrl, supportWhatsappDisplay } from "@/config/brand";
+import { contactEmail } from "@/config/brand";
 
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">Página não encontrada</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          A página que você procura não existe ou foi movida.
         </p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Go home
+            Ir para o início
           </Link>
         </div>
         <p className="mt-6 text-xs text-muted-foreground">
           Precisa de ajuda?{" "}
-          <a href={supportWhatsappUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-            Falar com suporte ({supportWhatsappDisplay})
+          <a href={`mailto:${contactEmail}`} className="text-primary hover:underline font-medium">
+            Falar com suporte ({contactEmail})
           </a>
         </p>
       </div>
@@ -53,10 +53,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+          Esta página não carregou
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+          Algo deu errado. Tente novamente ou volte para o início.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -66,19 +66,19 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             }}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Try again
+            Tentar novamente
           </button>
           <a
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
-            Go home
+            Ir para o início
           </a>
         </div>
         <p className="mt-6 text-xs text-muted-foreground">
           Precisa de ajuda?{" "}
-          <a href={supportWhatsappUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-            Falar com suporte ({supportWhatsappDisplay})
+          <a href={`mailto:${contactEmail}`} className="text-primary hover:underline font-medium">
+            Falar com suporte ({contactEmail})
           </a>
         </p>
       </div>
@@ -91,21 +91,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AtendeZap — Atendente de WhatsApp com IA + CRM Kanban" },
-      { name: "description", content: "Conecte o WhatsApp, deixe a IA atender e organize seus leads em um kanban arrastável." },
-      { name: "author", content: "AtendeZap" },
-      { property: "og:title", content: "AtendeZap — Atendente de WhatsApp com IA + CRM Kanban" },
-      { property: "og:description", content: "Conecte o WhatsApp, deixe a IA atender e organize seus leads em um kanban arrastável." },
+      { title: "ConectaChat — Atendimento e vendas pelo WhatsApp com IA e CRM" },
+      { name: "description", content: "Caixa de entrada compartilhada, chatbot, IA e CRM de vendas no WhatsApp. Teste 14 dias grátis, sem cartão. Planos a partir de R$ 27/mês." },
+      { name: "author", content: "ConectaChat" },
+      { property: "og:title", content: "ConectaChat — Atendimento e vendas pelo WhatsApp com IA e CRM" },
+      { property: "og:description", content: "Caixa de entrada compartilhada, chatbot, IA e CRM de vendas no WhatsApp. Teste 14 dias grátis, sem cartão." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "AtendeZap — Atendente de WhatsApp com IA + CRM Kanban" },
-      { name: "twitter:description", content: "Conecte o WhatsApp, deixe a IA atender e organize seus leads em um kanban arrastável." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/063e785c-e670-4910-86a1-b0bb141f6a96/id-preview-36807bb7--be429179-e739-4302-b8f8-67595d55c75d.lovable.app-1781545525627.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/063e785c-e670-4910-86a1-b0bb141f6a96/id-preview-36807bb7--be429179-e739-4302-b8f8-67595d55c75d.lovable.app-1781545525627.png" },
+      { name: "twitter:title", content: "ConectaChat — Atendimento e vendas pelo WhatsApp com IA e CRM" },
+      { name: "twitter:description", content: "Caixa de entrada compartilhada, chatbot, IA e CRM de vendas no WhatsApp. Teste 14 dias grátis, sem cartão." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.ico", sizes: "32x32" },
+      { rel: "icon", href: "/ConectaChat_icon.svg", type: "image/svg+xml" },
+      { rel: "apple-touch-icon", href: "/conectachat-180.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
