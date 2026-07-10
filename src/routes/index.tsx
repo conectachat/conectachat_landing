@@ -542,31 +542,31 @@ function HowItWorks() {
     {
       n: "01",
       t: "Conecte o WhatsApp",
-      d: "Escaneia o QR Code uma vez e pronto. Funciona com o número que você já usa.",
+      d: "Leia o QR Code, como no WhatsApp Web. Conecta em minutos, com o número que você já usa.",
       icon: <MessageSquareText className="size-5" />,
     },
     {
       n: "02",
-      t: "Treine sua IA",
-      d: "Uma tela com a personalidade da empresa, produtos, regras. Salvou? Já tá atendendo.",
+      t: "Monte seu atendimento",
+      d: "Chatbot visual arrastando e soltando, mais um atendente de IA com a sua própria chave (OpenAI, Gemini ou Claude).",
       icon: <Bot className="size-5" />,
     },
     {
       n: "03",
-      t: "A IA atende e organiza o CRM",
-      d: "Responde no automático, qualifica, e move o card no kanban — você só fecha.",
+      t: "A equipe atende numa só tela",
+      d: "Caixa de entrada compartilhada com filas e transferência, e cada negócio organizado no CRM Kanban.",
       icon: <KanbanSquare className="size-5" />,
     },
   ];
   return (
     <section id="como" className="px-5 md:px-8 py-24 md:py-28">
       <div className="mx-auto max-w-6xl">
-        <SectionTitle eyebrow="Como funciona" title={<>Em 3 passos. <span className="text-grad">Sério.</span></>} />
+        <SectionTitle eyebrow="Como funciona" title={<>Do primeiro "oi" ao fechamento, em <span className="text-grad">3 passos</span>.</>} />
         <div className="mt-12 grid md:grid-cols-3 gap-5">
           {steps.map((s) => (
             <div key={s.n} className="glass border-sheen rounded-2xl p-7 relative reveal" data-reveal>
               <div className="font-display text-5xl text-white/10 absolute right-5 top-4">{s.n}</div>
-              <div className="size-11 rounded-xl grid place-items-center" style={{ background: "rgba(37,211,102,0.15)", color: "#25D366" }}>
+              <div className="size-11 rounded-xl grid place-items-center" style={{ background: "rgba(143,197,73,0.15)", color: "#8FC549" }}>
                 {s.icon}
               </div>
               <h3 className="font-display text-xl mt-4">{s.t}</h3>
