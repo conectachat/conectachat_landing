@@ -42,7 +42,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Landing() {
-  function cta(path: "/entrar" | "/demo/dashboard" | "#planos") {
+  function cta(path: "/entrar" | "/cadastro" | "/demo/dashboard" | "#planos") {
     if (path === "#planos") {
       const el = document.getElementById("planos");
       if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -53,6 +53,7 @@ function Landing() {
       window.location.href = appLoginUrl;
       return;
     }
+    // "/cadastro" e o legado "/demo/dashboard" levam ao cadastro do app.
     window.location.href = appSignupUrl;
   }
 
@@ -106,7 +107,7 @@ function Landing() {
           color: transparent;
         }
         .btn-glow {
-          box-shadow: 0 10px 30px -12px rgba(37,211,102,0.55), 0 0 0 1px rgba(37,211,102,0.35) inset;
+          box-shadow: 0 10px 30px -12px rgba(143,197,73,0.55), 0 0 0 1px rgba(143,197,73,0.35) inset;
         }
 
         /* ===== LP tokens ===== */
@@ -271,26 +272,29 @@ function Header({
   isDark,
   onToggleTheme,
 }: {
-  onCta: (p: "/entrar" | "/demo/dashboard" | "#planos", plano?: string) => void;
+  onCta: (p: "/entrar" | "/cadastro" | "/demo/dashboard" | "#planos", plano?: string) => void;
   isDark: boolean;
   onToggleTheme: () => void;
 }) {
   return (
     <header className="lp-header sticky top-0 z-50 backdrop-blur-xl">
       <div className="mx-auto max-w-7xl px-4 sm:px-5 md:px-8 h-[4.5rem] md:h-20 flex items-center justify-between gap-3">
-        <a href="/" className="flex items-center gap-2.5">
-          <span className="grid h-10 w-10 md:h-11 md:w-11 place-items-center rounded-2xl btn-glow" style={{ background: "linear-gradient(135deg,#25D366,#16a34a)" }}>
-            <Zap className="size-5 text-black" strokeWidth={2.6} />
-          </span>
-          <span className="font-brand text-[1.5rem] md:text-[1.7rem] leading-none">
-            Atende<span className="text-grad">Zap</span>
-          </span>
+        <a href="/" className="flex items-center gap-2.5" aria-label="ConectaChat — início">
+          {isDark ? (
+            <>
+              <img src="/ConectaChat_icon.svg" alt="" className="h-9 w-9 md:h-10 md:w-10" />
+              <span className="font-brand text-[1.5rem] md:text-[1.7rem] leading-none text-white">
+                Conecta<span style={{ color: "#8FC549" }}>Chat</span>
+              </span>
+            </>
+          ) : (
+            <img src="/ConectaChat_horizontal.svg" alt="ConectaChat" className="h-8 md:h-9 w-auto" />
+          )}
         </a>
         <nav className="hidden md:flex items-center gap-8 text-[15px] font-semibold text-white/70">
-          <a href="#como" className="hover:text-white transition">Como funciona</a>
-          <a href="#recursos" className="hover:text-white transition">Recursos</a>
-          <a href="#planos" className="hover:text-white transition">Planos</a>
-          <a href="#faq" className="hover:text-white transition">Dúvidas</a>
+          <a href="#recursos" className="hover:text-white transition">Funcionalidades</a>
+          <a href="#planos" className="hover:text-white transition">Preços</a>
+          <a href="#faq" className="hover:text-white transition">Perguntas</a>
         </nav>
         <div className="flex items-center gap-2">
           <button
@@ -302,15 +306,18 @@ function Header({
           >
             {isDark ? <Sun className="size-4" /> : <Moon className="size-4" />}
           </button>
-          <button onClick={() => onCta("/entrar")} className="hidden sm:inline text-[15px] font-semibold px-4 py-2.5 rounded-xl text-white/80 hover:text-white">
+          <button
+            onClick={() => onCta("/entrar")}
+            className="hidden sm:inline text-[15px] font-semibold px-4 py-2.5 rounded-xl glass-strong text-white/85 hover:text-white transition"
+          >
             Entrar
           </button>
           <button
-            onClick={() => onCta("#planos")}
+            onClick={() => onCta("/cadastro")}
             className="text-[15px] font-bold px-5 py-3 rounded-xl text-black btn-glow"
-            style={{ background: "linear-gradient(135deg,#25D366,#16a34a)" }}
+            style={{ background: "linear-gradient(135deg,#8FC549,#79b23a)" }}
           >
-            Ver planos
+            Começar grátis
           </button>
         </div>
       </div>
