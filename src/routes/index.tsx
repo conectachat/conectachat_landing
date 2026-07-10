@@ -76,15 +76,15 @@ function Landing() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[1400px] z-0 overflow-hidden">
         <div
           className="lp-glow-a hidden md:block absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, #25D366 0%, transparent 60%)" }}
+          style={{ background: "radial-gradient(circle, #8FC549 0%, transparent 60%)" }}
         />
         <div
           className="lp-glow-b hidden md:block absolute top-[20%] -right-40 h-[700px] w-[700px] rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, #06b6d4 0%, transparent 65%)" }}
+          style={{ background: "radial-gradient(circle, #0055A6 0%, transparent 65%)" }}
         />
         <div
           className="lp-glow-c md:hidden absolute -top-32 left-1/2 -translate-x-1/2 h-[420px] w-[420px] rounded-full blur-2xl"
-          style={{ background: "radial-gradient(circle, #25D366 0%, transparent 60%)" }}
+          style={{ background: "radial-gradient(circle, #8FC549 0%, transparent 60%)" }}
         />
       </div>
 
@@ -144,8 +144,8 @@ function Landing() {
           --lp-input-bg: #111d18;
           --lp-input-pill: #0b1410;
           --lp-final-bg: linear-gradient(135deg,#0c3a23,#0a1a13);
-          --lp-final-bd: rgba(37,211,102,0.30);
-          --lp-final-shadow: 0 40px 120px -40px rgba(37,211,102,0.6);
+          --lp-final-bd: rgba(143,197,73,0.30);
+          --lp-final-shadow: 0 40px 120px -40px rgba(143,197,73,0.6);
         }
         .lp-root.is-light {
           --lp-bg: #F5F8F6;
@@ -170,15 +170,15 @@ function Landing() {
           --lp-input-bg: #FFFFFF;
           --lp-input-pill: #EEF3EF;
           --lp-final-bg: linear-gradient(135deg,#E8F6EE,#FFFFFF);
-          --lp-final-bd: rgba(22,163,74,0.30);
-          --lp-final-shadow: 0 40px 120px -40px rgba(22,163,74,0.35);
+          --lp-final-bd: rgba(143,197,73,0.30);
+          --lp-final-shadow: 0 40px 120px -40px rgba(143,197,73,0.35);
         }
 
         .lp-root { background: var(--lp-bg); color: rgb(var(--lp-fg-strong-rgb)); }
         .lp-root .glass { background: var(--lp-glass-bg); border: 1px solid var(--lp-glass-bd); transition: border-color .35s ease, box-shadow .35s ease, transform .35s ease; }
-        .lp-root .glass:hover { border-color: rgba(37,211,102,0.45); box-shadow: 0 14px 40px -18px rgba(37,211,102,0.35); }
+        .lp-root .glass:hover { border-color: rgba(143,197,73,0.45); box-shadow: 0 14px 40px -18px rgba(143,197,73,0.35); }
         .lp-root .glass-strong { background: var(--lp-glass-strong-bg); border: 1px solid var(--lp-glass-strong-bd); transition: border-color .35s ease, box-shadow .35s ease, transform .35s ease; }
-        .lp-root .glass-strong:hover { border-color: rgba(37,211,102,0.55); box-shadow: 0 18px 50px -18px rgba(37,211,102,0.45); }
+        .lp-root .glass-strong:hover { border-color: rgba(143,197,73,0.55); box-shadow: 0 18px 50px -18px rgba(143,197,73,0.45); }
         @media (min-width: 768px) {
           .lp-root .glass { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
           .lp-root .glass-strong { backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
@@ -255,7 +255,7 @@ function Landing() {
           position: absolute; inset: -1px;
           border-radius: inherit;
           padding: 1px;
-          background: linear-gradient(120deg, transparent 30%, rgba(37,211,102,0.6) 50%, transparent 70%);
+          background: linear-gradient(120deg, transparent 30%, rgba(143,197,73,0.6) 50%, transparent 70%);
           background-size: 200% 100%;
           -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
           -webkit-mask-composite: xor;
@@ -1086,10 +1086,10 @@ function SectionTitle({ eyebrow, title }: { eyebrow: string; title: React.ReactN
   // Padronizado: sempre centralizado, maior, com eyebrow em destaque.
   return (
     <div className="reveal text-center" data-reveal>
-      <div className="inline-flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.28em] text-[#25D366] font-bold">
-        <span className="h-px w-10 bg-[#25D366]/60" />
+      <div className="inline-flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.28em] text-[#8FC549] font-bold">
+        <span className="h-px w-10 bg-[#8FC549]/60" />
         {eyebrow}
-        <span className="h-px w-10 bg-[#25D366]/60" />
+        <span className="h-px w-10 bg-[#8FC549]/60" />
       </div>
       <h2 className="font-display text-5xl md:text-7xl font-black leading-[0.98] tracking-tight mt-5 max-w-4xl mx-auto">
         {title}
