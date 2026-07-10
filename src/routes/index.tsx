@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { brand, appLoginUrl, appSignupUrl } from "@/config/brand";
+import { brand, appLoginUrl, appSignupUrl, contactEmail } from "@/config/brand";
 import { useEffect, useState } from "react";
 import {
-  Zap,
   Check,
   MessageSquareText,
   Bot,
@@ -1039,47 +1038,43 @@ function Footer() {
   return (
     <footer className="px-5 md:px-8 pt-16 md:pt-20 pb-10 border-t border-white/5">
       <div className="mx-auto max-w-6xl">
-        <div className="grid gap-10 md:gap-8 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-10 md:gap-8 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-3">
-              <span className="grid h-10 w-10 place-items-center rounded-2xl btn-glow" style={{ background: "linear-gradient(135deg,#25D366,#16a34a)" }}>
-                <Zap className="size-4 text-black" strokeWidth={2.6} />
+            <a href="/" className="flex items-center gap-2.5" aria-label="ConectaChat — início">
+              <img src="/ConectaChat_icon.svg" alt="" className="h-9 w-9" />
+              <span className="font-brand text-[1.4rem] leading-none">
+                Conecta<span style={{ color: "#8FC549" }}>Chat</span>
               </span>
-              <span className="font-brand text-[1.4rem] leading-none">Atende<span className="text-grad">Zap</span></span>
-            </div>
+            </a>
             <p className="mt-4 text-sm text-white/55 leading-relaxed max-w-xs">
-              IA que atende seu WhatsApp 24h, qualifica e organiza o CRM sozinha. Você só fecha.
+              Atendimento e vendas pelo WhatsApp.
             </p>
           </div>
           <div>
             <div className="text-xs uppercase tracking-[0.2em] text-white/45 font-bold">Produto</div>
             <ul className="mt-4 space-y-2.5 text-sm text-white/65">
-              <li><a href="#recursos" className="hover:text-white">Recursos</a></li>
-              <li><a href="#como" className="hover:text-white">Como funciona</a></li>
-              <li><a href="#planos" className="hover:text-white">Planos</a></li>
-              <li><a href="/demo/dashboard" className="hover:text-white">Demonstração</a></li>
-            </ul>
-          </div>
-          <div>
-            <div className="text-xs uppercase tracking-[0.2em] text-white/45 font-bold">Empresa</div>
-            <ul className="mt-4 space-y-2.5 text-sm text-white/65">
-              <li><a href="#faq" className="hover:text-white">Dúvidas</a></li>
-              <li><a href="#" className="hover:text-white">Contato</a></li>
-              <li><a href="#" className="hover:text-white">Suporte</a></li>
+              <li><a href="#recursos" className="hover:text-white">Funcionalidades</a></li>
+              <li><a href="#planos" className="hover:text-white">Preços</a></li>
+              <li><a href={appLoginUrl} className="hover:text-white">Entrar</a></li>
             </ul>
           </div>
           <div>
             <div className="text-xs uppercase tracking-[0.2em] text-white/45 font-bold">Legal</div>
             <ul className="mt-4 space-y-2.5 text-sm text-white/65">
-              <li><a href="/termos" className="hover:text-white">Termos</a></li>
-              <li><a href="/privacidade" className="hover:text-white">Privacidade</a></li>
-              <li><a href="/reembolso" className="hover:text-white">Reembolso</a></li>
+              <li><a href="/termos" className="hover:text-white">Termos e Condições</a></li>
+              <li><a href="/privacidade" className="hover:text-white">Política de Privacidade</a></li>
+              <li><a href="/reembolso" className="hover:text-white">Política de Reembolso</a></li>
+            </ul>
+          </div>
+          <div>
+            <div className="text-xs uppercase tracking-[0.2em] text-white/45 font-bold">Contato</div>
+            <ul className="mt-4 space-y-2.5 text-sm text-white/65">
+              <li><a href={`mailto:${contactEmail}`} className="hover:text-white">{contactEmail}</a></li>
             </ul>
           </div>
         </div>
-        <div className="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row gap-3 items-center justify-between text-xs text-white/40">
-          <span>© {new Date().getFullYear()} {brand.name}. Todos os direitos reservados.</span>
-          <span>Feito no Brasil com ☕ e WhatsApp.</span>
+        <div className="mt-12 pt-6 border-t border-white/10 text-xs text-white/40 leading-relaxed">
+          © {new Date().getFullYear()} {brand.name}. Operado por R Drumond Santos LTDA — CNPJ 55.595.377/0001-22.
         </div>
       </div>
     </footer>
