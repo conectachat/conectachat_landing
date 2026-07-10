@@ -18,6 +18,10 @@ import {
   Sparkles,
   Sun,
   Moon,
+  LayoutGrid,
+  Share2,
+  Inbox,
+  MonitorSmartphone,
 } from "lucide-react";
 
 
@@ -493,18 +497,21 @@ function Bubble({ children, side, delay }: { children: React.ReactNode; side: "l
 /* ===================== STATS ===================== */
 function Stats() {
   const items = [
-    { n: "3s", l: "tempo de resposta" },
-    { n: "24/7", l: "no ar" },
-    { n: "+38%", l: "conversão" },
-    { n: "0", l: "lead esquecido" },
+    { icon: <LayoutGrid className="size-5" />, n: "13 módulos", l: "prontos e no ar" },
+    { icon: <Share2 className="size-5" />, n: "Multicanal", l: "WhatsApp hoje; Instagram e Messenger a caminho" },
+    { icon: <Inbox className="size-5" />, n: "1 caixa de entrada", l: "para toda a equipe" },
+    { icon: <MonitorSmartphone className="size-5" />, n: "PWA", l: "instala no celular e no PC" },
   ];
   return (
     <section className="px-5 md:px-8 py-12 md:py-16">
       <div className="mx-auto max-w-6xl glass rounded-3xl grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/10 reveal" data-reveal>
         {items.map((it) => (
-          <div key={it.l} className="px-6 py-8 text-center">
-            <div className="font-display text-4xl md:text-5xl text-grad">{it.n}</div>
-            <div className="text-[11px] uppercase tracking-[0.18em] text-white/55 mt-2 font-semibold">{it.l}</div>
+          <div key={it.n} className="px-6 py-8 text-center flex flex-col items-center">
+            <div className="size-11 rounded-xl grid place-items-center mb-3" style={{ background: "rgba(143,197,73,0.15)", color: "#8FC549" }}>
+              {it.icon}
+            </div>
+            <div className="font-display text-2xl md:text-[1.75rem] text-grad leading-tight">{it.n}</div>
+            <div className="text-[12px] text-white/55 mt-2 font-medium leading-snug">{it.l}</div>
           </div>
         ))}
       </div>
