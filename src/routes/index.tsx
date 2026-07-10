@@ -98,6 +98,7 @@ function Landing() {
         <HowItWorks />
         <Features />
         <Channels />
+        <AiEdge />
         <Pricing onCta={cta} />
         <Testimonials />
         <Faq />
@@ -656,6 +657,69 @@ function Channels() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ===================== AI EDGE ===================== */
+function AiEdge() {
+  const benefits = [
+    "Responde na hora",
+    "Entende áudios do cliente",
+    "Passa para um humano quando precisa",
+  ];
+  const providers = ["OpenAI", "Google Gemini", "Anthropic Claude"];
+  return (
+    <section className="px-4 sm:px-5 md:px-8 py-24 md:py-28">
+      <div className="mx-auto max-w-6xl">
+        <div
+          className="glass-strong rounded-[2rem] p-8 sm:p-12 md:p-16 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center reveal"
+          data-reveal
+        >
+          <div>
+            <div className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-[#8FC549] font-bold">
+              <Sparkles className="size-3.5" /> Inteligência artificial
+            </div>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.02] tracking-tight mt-5">
+              IA que trabalha por você — <span className="text-grad">sem custo escondido</span>.
+            </h2>
+            <p className="mt-6 text-lg text-white/70 leading-relaxed">
+              Crie um atendente de IA que responde na hora, entende áudios do cliente e passa para um
+              humano quando precisa. A IA usa a chave da sua própria conta (OpenAI, Google Gemini ou
+              Anthropic Claude), então você paga o provedor direto, pelo seu uso — sem taxa extra nossa
+              por cima.
+            </p>
+            <div className="mt-7 inline-flex items-center gap-2.5 rounded-2xl px-4 py-3 glass">
+              <span className="size-8 rounded-xl grid place-items-center shrink-0" style={{ background: "rgba(143,197,73,0.15)", color: "#8FC549" }}>
+                <Bot className="size-4" />
+              </span>
+              <span className="text-sm font-semibold">
+                Sua chave, seu custo — <span className="text-[#8FC549]">0% de taxa</span> por cima.
+              </span>
+            </div>
+          </div>
+          <div className="space-y-7">
+            <ul className="space-y-3">
+              {benefits.map((b) => (
+                <li key={b} className="flex items-center gap-3">
+                  <span className="size-6 rounded-full grid place-items-center shrink-0" style={{ background: "rgba(143,197,73,0.2)" }}>
+                    <Check className="size-3.5 text-[#8FC549]" strokeWidth={3} />
+                  </span>
+                  <span className="text-[15px] font-medium text-white/85">{b}</span>
+                </li>
+              ))}
+            </ul>
+            <div>
+              <div className="text-[11px] uppercase tracking-[0.2em] text-white/45 font-bold mb-3">Funciona com</div>
+              <div className="flex flex-wrap gap-2.5">
+                {providers.map((p) => (
+                  <span key={p} className="glass rounded-xl px-4 py-2.5 text-sm font-semibold">{p}</span>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
