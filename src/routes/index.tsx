@@ -9,8 +9,6 @@ import {
   Bot,
   KanbanSquare,
   Users,
-  PauseCircle,
-  LineChart,
   Star,
   ArrowRight,
   Plus,
@@ -582,21 +580,21 @@ function HowItWorks() {
 /* ===================== FEATURES ===================== */
 function Features() {
   const items = [
-    { t: "Inbox unificado", d: "Todas as conversas em um só lugar, com histórico completo por contato.", icon: <MessageSquareText className="size-5" /> },
-    { t: "IA que responde como você", d: "Treinada com o tom da sua empresa. Faz uma pergunta por vez, não soa robô.", icon: <Bot className="size-5" /> },
-    { t: "CRM kanban automático", d: "A IA classifica e move: Conversas, Negociando, Ganho, Perda. Sem digitar.", icon: <KanbanSquare className="size-5" /> },
-    { t: "Multi-atendente", d: "Convide seu time. Cada um vê o que importa, com papéis e permissões.", icon: <Users className="size-5" /> },
-    { t: "Pausa por palavra", d: "Digitou /pausar? A IA cala a boca e você assume aquele contato.", icon: <PauseCircle className="size-5" /> },
-    { t: "Relatórios que mostram o dinheiro", d: "Tempo de resposta, conversão, taxa de ganho. Decisão em segundos.", icon: <LineChart className="size-5" /> },
+    { t: "Caixa de entrada compartilhada", d: "Toda a equipe atende do mesmo lugar, com filas e transferência de conversa entre atendentes.", icon: <Inbox className="size-5" /> },
+    { t: "Chatbot visual", d: "Monte fluxos de atendimento arrastando e soltando. Sem código, no ritmo da sua operação.", icon: <Share2 className="size-5" /> },
+    { t: "Atendente de IA com sua chave", d: "Conecte sua própria chave da OpenAI, Gemini ou Claude. A IA responde no tom da sua empresa.", icon: <Bot className="size-5" /> },
+    { t: "CRM de vendas em Kanban", d: "Cada conversa vira um card. Arraste pelas etapas do funil e acompanhe o que está aberto.", icon: <KanbanSquare className="size-5" /> },
+    { t: "Multi-atendente", d: "Convide seu time e defina papéis e permissões. Cada pessoa vê o que precisa.", icon: <Users className="size-5" /> },
+    { t: "Instala no celular e no PC", d: "É um PWA: abre como app no smartphone e no computador, sem loja de aplicativos.", icon: <MonitorSmartphone className="size-5" /> },
   ];
   return (
     <section id="recursos" className="px-5 md:px-8 py-24 md:py-28">
       <div className="mx-auto max-w-6xl">
-        <SectionTitle eyebrow="Recursos" title={<>Tudo que você precisa pra <span className="text-grad">parar de perder venda</span>.</>} />
+        <SectionTitle eyebrow="Recursos" title={<>Atendimento, chatbot, IA e CRM <span className="text-grad">num app só</span>.</>} />
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {items.map((it) => (
             <div key={it.t} className="glass border-sheen rounded-2xl p-6 hover:-translate-y-1 transition-transform reveal" data-reveal>
-              <div className="size-11 rounded-xl grid place-items-center" style={{ background: "rgba(37,211,102,0.15)", color: "#25D366" }}>
+              <div className="size-11 rounded-xl grid place-items-center" style={{ background: "rgba(143,197,73,0.15)", color: "#8FC549" }}>
                 {it.icon}
               </div>
               <h3 className="font-display text-lg mt-4">{it.t}</h3>
