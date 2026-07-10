@@ -3,7 +3,6 @@ import { brand, appLoginUrl, appSignupUrl } from "@/config/brand";
 import { useEffect, useState } from "react";
 import {
   Zap,
-  Play,
   Check,
   MessageSquareText,
   Bot,
@@ -1001,7 +1000,7 @@ function Faq() {
 }
 
 /* ===================== FINAL CTA ===================== */
-function FinalCta({ onCta }: { onCta: (p: "/entrar" | "/demo/dashboard" | "#planos", plano?: string) => void }) {
+function FinalCta({ onCta }: { onCta: (p: "/entrar" | "/cadastro" | "/demo/dashboard" | "#planos", plano?: string) => void }) {
   return (
     <section className="px-4 sm:px-5 md:px-8 py-20 md:py-28">
       <div
@@ -1014,26 +1013,21 @@ function FinalCta({ onCta }: { onCta: (p: "/entrar" | "/demo/dashboard" | "#plan
         }}
       >
 
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 size-[500px] rounded-full opacity-40 blur-3xl" style={{ background: "radial-gradient(circle,#25D366,transparent 60%)" }} />
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 size-[500px] rounded-full opacity-40 blur-3xl" style={{ background: "radial-gradient(circle,#8FC549,transparent 60%)" }} />
         <div className="relative">
-          <h2 className="font-display text-4xl sm:text-5xl md:text-7xl leading-[0.98] tracking-tight">
-            Pare de perder venda no <span className="text-grad">"oi, sumiu"</span>.
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.0] tracking-tight max-w-3xl mx-auto">
+            Comece hoje. Leva <span className="text-grad">menos de 5 minutos</span> para conectar seu WhatsApp.
           </h2>
-          <p className="mt-6 text-white/70 max-w-xl mx-auto text-lg sm:text-xl">
-            3 dias grátis pra ver a IA atendendo seu WhatsApp e fechando lead sozinha. Cancele antes e não paga nada.
-          </p>
-          <div className="mt-10 flex flex-col sm:flex-row flex-wrap justify-center gap-3">
+          <div className="mt-10 flex justify-center">
             <button
-              onClick={() => onCta("/entrar")}
+              onClick={() => onCta("/cadastro")}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl text-black font-bold text-base sm:text-lg btn-glow"
-              style={{ background: "linear-gradient(135deg,#25D366,#16a34a)" }}
+              style={{ background: "linear-gradient(135deg,#8FC549,#79b23a)" }}
             >
-              Começar agora, de graça <ArrowRight className="size-5" />
-            </button>
-            <button onClick={() => onCta("/demo/dashboard")} className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl glass-strong text-white hover:bg-white/10 text-base sm:text-lg font-medium">
-              <Play className="size-4" /> Ver demonstração
+              Começar 14 dias grátis <ArrowRight className="size-5" />
             </button>
           </div>
+          <p className="mt-5 text-sm text-white/60 font-medium">Sem cartão • Cancele quando quiser</p>
         </div>
       </div>
     </section>
