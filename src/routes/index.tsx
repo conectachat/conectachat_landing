@@ -525,12 +525,11 @@ function Pain() {
     <section className="px-5 md:px-8 py-24 md:py-28">
       <div className="mx-auto max-w-3xl text-center reveal" data-reveal>
         <h2 className="font-display text-4xl md:text-6xl leading-[1.02] tracking-tight">
-          Lead que espera, lead que <span className="text-grad">compra do concorrente</span>.
+          Sua operação inteira de atendimento e vendas, <span className="text-grad">sem gambiarra</span>.
         </h2>
         <p className="mt-6 text-lg md:text-xl text-white/65 leading-relaxed">
-          A primeira empresa a responder vende. Sempre. Enquanto você está dirigindo, atendendo na loja
-          ou dormindo, os leads do anúncio que você pagou estão sumindo na fila. O AtendeZap responde
-          em segundos, qualifica e já te entrega o lead pronto pra fechar.
+          Pare de pular entre WhatsApp, planilha e caderninho. O ConectaChat junta atendimento,
+          chatbot, inteligência artificial e CRM de vendas num só lugar.
         </p>
       </div>
     </section>
