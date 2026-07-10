@@ -30,21 +30,27 @@ import {
 
 export const Route = createFileRoute("/")({
   ssr: false,
-  head: () => ({
-    meta: [
-      { title: `${brand.name} — IA atende seu WhatsApp 24h e organiza o CRM sozinha` },
-      {
-        name: "description",
-        content:
-          "Conecte seu número de WhatsApp em 2 minutos. A IA da ConectaChat responde, qualifica e move cada lead no funil automaticamente. 14 dias grátis para testar.",
-      },
-      { property: "og:title", content: `${brand.name} — WhatsApp + IA + CRM no automático` },
-      {
-        property: "og:description",
-        content: "Conecte seu número de WhatsApp em 2 minutos. A IA da ConectaChat responde, qualifica e move cada lead no funil automaticamente. 14 dias grátis para testar.",
-      },
-    ],
-  }),
+  head: () => {
+    const title = `${brand.name} — Atendimento e vendas pelo WhatsApp com IA e CRM`;
+    const description =
+      "Caixa de entrada compartilhada, chatbot, IA e CRM de vendas no WhatsApp. Teste 14 dias grátis, sem cartão. Planos a partir de R$ 27/mês.";
+    const image = "https://conectachat.online/conectachat-512.png";
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: "https://conectachat.online" },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:image", content: image },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: description },
+        { name: "twitter:image", content: image },
+      ],
+    };
+  },
   component: Landing,
 });
 
