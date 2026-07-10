@@ -100,6 +100,7 @@ function Landing() {
         <Channels />
         <AiEdge />
         <Pricing onCta={cta} />
+        <IncludedInAll />
         <Testimonials />
         <Faq />
         <FinalCta onCta={cta} />
@@ -864,6 +865,42 @@ function Pricing({ onCta }: { onCta: (p: "/entrar" | "/cadastro" | "/demo/dashbo
             </li>
           ))}
         </ul>
+      </div>
+    </section>
+  );
+}
+
+/* ===================== INCLUDED IN ALL PLANS ===================== */
+function IncludedInAll() {
+  const items = [
+    "Caixa de entrada omnichannel",
+    "Chatbot visual",
+    "Atendente de IA",
+    "CRM completo",
+    "Campanhas em massa",
+    "Catálogo",
+    "Contatos e etiquetas",
+    "Relatórios",
+    "Agendamento",
+    "Chat interno da equipe",
+    "Integrações",
+    "App instalável (PWA)",
+  ];
+  return (
+    <section className="px-5 md:px-8 py-16 md:py-20">
+      <div className="mx-auto max-w-4xl">
+        <SectionTitle eyebrow="Incluído em todos os planos" title={<>O que muda é a <span className="text-grad">capacidade</span>.</>} />
+        <p className="text-center text-white/60 max-w-2xl mx-auto mt-5 text-[15px]">As funções são as mesmas para todos.</p>
+        <div className="mt-10 glass rounded-3xl p-8 md:p-10 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-4 reveal" data-reveal>
+          {items.map((it) => (
+            <div key={it} className="flex items-center gap-3">
+              <span className="size-6 rounded-full grid place-items-center shrink-0" style={{ background: "rgba(143,197,73,0.2)" }}>
+                <Check className="size-3.5 text-[#8FC549]" strokeWidth={3} />
+              </span>
+              <span className="text-[15px] font-medium text-white/85">{it}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
