@@ -329,7 +329,7 @@ function Header({
 
 
 /* ===================== HERO ===================== */
-function Hero({ onCta }: { onCta: (p: "/entrar" | "/demo/dashboard" | "#planos", plano?: string) => void }) {
+function Hero({ onCta }: { onCta: (p: "/entrar" | "/cadastro" | "/demo/dashboard" | "#planos", plano?: string) => void }) {
   return (
     <section className="relative px-4 sm:px-6 md:px-8 pt-12 md:pt-28 pb-16 md:pb-24">
       <div className="absolute inset-0 grid-bg [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)] opacity-40 pointer-events-none" />
@@ -623,13 +623,13 @@ function Pricing({ onCta }: { onCta: (p: "/entrar" | "/demo/dashboard" | "#plano
         "CRM Kanban + IA Gemini",
         "Suporte por email",
       ],
-      cta: "Começar 3 dias grátis",
+      cta: "Começar 14 dias grátis",
     },
     {
       slug: "pro",
       n: "Pro",
       p: "R$ 197",
-      d: "Pra time que já vende todo dia. O mais escolhido.",
+      d: "Pra time que já vende todo dia.",
       f: [
         "1 número de WhatsApp",
         "5 usuários no painel",
@@ -640,8 +640,7 @@ function Pricing({ onCta }: { onCta: (p: "/entrar" | "/demo/dashboard" | "#plano
         "Suporte prioritário",
       ],
       highlight: true,
-      cta: "Quero o Pro — 3 dias grátis",
-      badge: "Economize 2 meses no anual",
+      cta: "Quero o Pro — 14 dias grátis",
     },
     {
       slug: "business",
@@ -664,18 +663,18 @@ function Pricing({ onCta }: { onCta: (p: "/entrar" | "/demo/dashboard" | "#plano
     <section id="planos" className="px-5 md:px-8 py-24 md:py-28">
       <div className="mx-auto max-w-6xl">
         <SectionTitle eyebrow="Planos" title={<>Quanto mais <span className="text-grad">cresce</span>, mais <span className="text-grad">economiza</span>.</>} />
-        <p className="text-center text-white/55 max-w-2xl mx-auto mt-4 text-[15px]">Todos os planos têm 3 dias grátis. Cancele antes do fim do trial e não é cobrado.</p>
+        <p className="text-center text-white/55 max-w-2xl mx-auto mt-4 text-[15px]">Todos os planos têm 14 dias grátis. Cancele antes do fim do trial e não é cobrado.</p>
         <div className="mt-12 grid md:grid-cols-3 gap-5 items-stretch">
           {plans.map((pl) => (
             <div
               key={pl.n}
               className={`relative rounded-2xl p-7 flex flex-col reveal ${pl.highlight ? "glass-strong" : "glass"}`}
               data-reveal
-              style={pl.highlight ? { boxShadow: "0 20px 60px -20px rgba(37,211,102,0.5), 0 0 0 1px rgba(37,211,102,0.4) inset" } : undefined}
+              style={pl.highlight ? { boxShadow: "0 20px 60px -20px rgba(143,197,73,0.5), 0 0 0 1px rgba(143,197,73,0.4) inset" } : undefined}
             >
               {pl.highlight && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] uppercase font-bold tracking-wider px-3 py-1 rounded-full text-black whitespace-nowrap" style={{ background: "linear-gradient(135deg,#25D366,#a3e635)" }}>
-                  Mais popular · 4× mais conversas
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] uppercase font-bold tracking-wider px-3 py-1 rounded-full text-black whitespace-nowrap" style={{ background: "linear-gradient(135deg,#8FC549,#79b23a)" }}>
+                  Recomendado · 4× mais conversas
                 </div>
               )}
               <div className="text-sm text-white/60 font-semibold uppercase tracking-wider">{pl.n}</div>
@@ -687,8 +686,8 @@ function Pricing({ onCta }: { onCta: (p: "/entrar" | "/demo/dashboard" | "#plano
               <ul className="mt-6 space-y-2.5 text-sm flex-1">
                 {pl.f.map((x) => (
                   <li key={x} className="flex gap-2.5">
-                    <span className="mt-0.5 size-4 rounded-full grid place-items-center shrink-0" style={{ background: "rgba(37,211,102,0.2)" }}>
-                      <Check className="size-2.5 text-[#25D366]" strokeWidth={3} />
+                    <span className="mt-0.5 size-4 rounded-full grid place-items-center shrink-0" style={{ background: "rgba(143,197,73,0.2)" }}>
+                      <Check className="size-2.5 text-[#8FC549]" strokeWidth={3} />
                     </span>
                     <span className="text-white/80">{x}</span>
                   </li>
@@ -699,14 +698,14 @@ function Pricing({ onCta }: { onCta: (p: "/entrar" | "/demo/dashboard" | "#plano
                 className={`mt-7 w-full px-4 py-3 rounded-xl font-semibold transition ${
                   pl.highlight ? "text-black btn-glow" : "glass-strong text-white hover:bg-white/10"
                 }`}
-                style={pl.highlight ? { background: "linear-gradient(135deg,#25D366,#16a34a)" } : undefined}
+                style={pl.highlight ? { background: "linear-gradient(135deg,#8FC549,#79b23a)" } : undefined}
               >
                 {pl.cta}
               </button>
             </div>
           ))}
         </div>
-        <p className="mt-5 text-center text-xs text-white/40">Cartão é exigido apenas para liberar o trial. Cancele em até 3 dias e não pagamos nada.</p>
+        <p className="mt-5 text-center text-xs text-white/40">Sem cartão para começar. Você só decide o plano quando o trial acabar.</p>
       </div>
     </section>
   );
