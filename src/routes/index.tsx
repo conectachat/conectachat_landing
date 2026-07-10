@@ -727,63 +727,91 @@ function AiEdge() {
 }
 
 /* ===================== PRICING ===================== */
-function Pricing({ onCta }: { onCta: (p: "/entrar" | "/demo/dashboard" | "#planos", plano?: string) => void }) {
+function Pricing({ onCta }: { onCta: (p: "/entrar" | "/cadastro" | "/demo/dashboard" | "#planos", plano?: string) => void }) {
   const plans = [
     {
-      slug: "starter",
-      n: "Starter",
-      p: "R$ 97",
-      d: "Pra autônomo testando a operação.",
+      slug: "solo",
+      n: "Solo / MEI",
+      from: "R$ 49",
+      p: "R$ 27",
+      d: "Para o autônomo ou MEI começando a organizar o atendimento.",
       f: [
-        "1 número de WhatsApp",
+        "1 canal (WhatsApp)",
         "1 usuário",
-        "1.500 conversas/mês",
+        "1.000 conversas/mês",
         "1.000 contatos",
-        "CRM Kanban + IA Gemini",
-        "Suporte por email",
+        "1 agente de IA",
+        "1 funil de CRM",
       ],
-      cta: "Começar 14 dias grátis",
+      cta: "Começar grátis",
     },
     {
-      slug: "pro",
-      n: "Pro",
-      p: "R$ 197",
-      d: "Pra time que já vende todo dia.",
+      slug: "essencial",
+      n: "Essencial",
+      from: "R$ 97",
+      p: "R$ 47",
+      d: "Para o pequeno negócio com uma equipe enxuta.",
       f: [
-        "1 número de WhatsApp",
-        "5 usuários no painel",
-        "6.000 conversas/mês",
+        "1 canal (WhatsApp)",
+        "3 usuários",
+        "3.000 conversas/mês",
         "5.000 contatos",
-        "IA Gemini + GPT + Claude",
-        "Google Agenda + Relatórios",
-        "Suporte prioritário",
+        "3 agentes de IA",
+        "1 funil de CRM",
+      ],
+      cta: "Começar grátis",
+    },
+    {
+      slug: "professional",
+      n: "Professional",
+      from: "R$ 197",
+      p: "R$ 97",
+      d: "Para o time que já vende todo dia. O mais escolhido.",
+      f: [
+        "4 canais",
+        "10 usuários",
+        "10.000 conversas/mês",
+        "15.000 contatos",
+        "Agentes de IA ilimitados",
+        "5 funis de CRM",
       ],
       highlight: true,
-      cta: "Quero o Pro — 14 dias grátis",
+      cta: "Quero o Professional",
     },
     {
-      slug: "business",
-      n: "Business",
-      p: "R$ 497",
-      d: "Pra operação alta performance e múltiplas equipes.",
+      slug: "avancado",
+      n: "Avançado",
+      from: "R$ 397",
+      p: "R$ 297",
+      d: "Para operação de alta performance e várias equipes.",
       f: [
-        "1 número de WhatsApp",
-        "20 usuários no painel",
-        "30.000 conversas/mês",
-        "25.000 contatos",
-        "API + Webhooks",
-        "Onboarding 1:1 + Gerente dedicado",
-        "SLA 99,9% + Suporte 24/7",
+        "Canais ilimitados*",
+        "20+ usuários",
+        "40.000 conversas/mês",
+        "50.000 contatos",
+        "Agentes de IA ilimitados",
+        "Funis ilimitados",
       ],
-      cta: "Falar com vendas",
+      cta: "Começar grátis",
     },
+  ];
+  const notes = [
+    "Canal = cada número de WhatsApp, conta de Instagram ou página de Messenger conectada.",
+    "*Planos “ilimitados” seguem política de uso justo.",
+    "Preço de fundador travado por 12 meses para quem entrar entre os 100 primeiros.",
+    "Pague no anual via Pix e economize ~17%.",
+    "Cartão exigido só na contratação após o teste. Cancele em até 30 dias e devolvemos seu dinheiro.",
   ];
   return (
     <section id="planos" className="px-5 md:px-8 py-24 md:py-28">
       <div className="mx-auto max-w-6xl">
-        <SectionTitle eyebrow="Planos" title={<>Quanto mais <span className="text-grad">cresce</span>, mais <span className="text-grad">economiza</span>.</>} />
-        <p className="text-center text-white/55 max-w-2xl mx-auto mt-4 text-[15px]">Todos os planos têm 14 dias grátis. Cancele antes do fim do trial e não é cobrado.</p>
-        <div className="mt-12 grid md:grid-cols-3 gap-5 items-stretch">
+        <SectionTitle eyebrow="Planos" title={<>Preço de <span className="text-grad">fundador</span>. Só para os 100 primeiros.</>} />
+        <p className="text-center text-white/60 max-w-2xl mx-auto mt-5 text-[15px] leading-relaxed">
+          Todos os planos incluem <strong className="text-white/85">todas as funcionalidades</strong>. A diferença é o quanto você usa — não o que
+          pode usar. Preço de fundador travado por 12 meses.
+        </p>
+        <p className="text-center text-[13px] font-semibold text-[#8FC549] mt-3">Todos os planos têm 14 dias grátis, sem cartão.</p>
+        <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
           {plans.map((pl) => (
             <div
               key={pl.n}
@@ -793,16 +821,20 @@ function Pricing({ onCta }: { onCta: (p: "/entrar" | "/demo/dashboard" | "#plano
             >
               {pl.highlight && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] uppercase font-bold tracking-wider px-3 py-1 rounded-full text-black whitespace-nowrap" style={{ background: "linear-gradient(135deg,#8FC549,#79b23a)" }}>
-                  Recomendado · 4× mais conversas
+                  Mais popular
                 </div>
               )}
               <div className="text-sm text-white/60 font-semibold uppercase tracking-wider">{pl.n}</div>
-              <div className="font-display text-4xl mt-2">
+              <div className="mt-2 flex items-baseline gap-2">
+                <span className="text-sm text-white/40 line-through">{pl.from}</span>
+                <span className="text-[11px] uppercase tracking-wider text-[#8FC549] font-bold">fundador</span>
+              </div>
+              <div className="font-display text-4xl mt-1">
                 {pl.p}
                 <span className="text-base text-white/50 font-normal">/mês</span>
               </div>
-              <p className="text-sm text-white/60 mt-2 min-h-[40px]">{pl.d}</p>
-              <ul className="mt-6 space-y-2.5 text-sm flex-1">
+              <p className="text-sm text-white/60 mt-3 min-h-[56px]">{pl.d}</p>
+              <ul className="mt-5 space-y-2.5 text-sm flex-1">
                 {pl.f.map((x) => (
                   <li key={x} className="flex gap-2.5">
                     <span className="mt-0.5 size-4 rounded-full grid place-items-center shrink-0" style={{ background: "rgba(143,197,73,0.2)" }}>
@@ -813,7 +845,7 @@ function Pricing({ onCta }: { onCta: (p: "/entrar" | "/demo/dashboard" | "#plano
                 ))}
               </ul>
               <button
-                onClick={() => onCta("/entrar", pl.slug)}
+                onClick={() => onCta("/cadastro", pl.slug)}
                 className={`mt-7 w-full px-4 py-3 rounded-xl font-semibold transition ${
                   pl.highlight ? "text-black btn-glow" : "glass-strong text-white hover:bg-white/10"
                 }`}
@@ -824,7 +856,14 @@ function Pricing({ onCta }: { onCta: (p: "/entrar" | "/demo/dashboard" | "#plano
             </div>
           ))}
         </div>
-        <p className="mt-5 text-center text-xs text-white/40">Sem cartão para começar. Você só decide o plano quando o trial acabar.</p>
+        <ul className="mt-8 max-w-3xl mx-auto space-y-1.5 text-xs text-white/45 leading-relaxed">
+          {notes.map((n) => (
+            <li key={n} className="flex gap-2">
+              <span className="text-[#8FC549]">•</span>
+              <span>{n}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
