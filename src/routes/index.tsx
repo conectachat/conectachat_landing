@@ -101,7 +101,7 @@ function Landing() {
         .font-display { font-family: 'Montserrat', system-ui, sans-serif; font-weight: 800; letter-spacing: -0.025em; }
         .font-brand { font-family: 'Montserrat', system-ui, sans-serif; font-weight: 900; letter-spacing: -0.04em; }
         .text-grad {
-          background: linear-gradient(95deg, #25D366 0%, #a3e635 45%, #22d3ee 100%);
+          background: linear-gradient(95deg, #8FC549 0%, #0055A6 100%);
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;
@@ -217,7 +217,7 @@ function Landing() {
           content: '';
           position: absolute; inset: 0;
           border-radius: 9999px;
-          background: #25D366;
+          background: #8FC549;
           animation: dot-pulse 1.8s ease-out infinite;
           opacity: 0.6;
         }
@@ -334,40 +334,41 @@ function Hero({ onCta }: { onCta: (p: "/entrar" | "/demo/dashboard" | "#planos",
       <div className="mx-auto max-w-7xl grid lg:grid-cols-2 gap-10 md:gap-16 items-center relative">
         <div className="text-center lg:text-left">
           <div className="inline-flex items-center gap-2 text-[13px] px-3.5 py-1.5 rounded-full glass">
-            <span className="relative inline-block size-2 rounded-full bg-[#25D366] dot-pulse" />
-            <span className="text-white/80 font-semibold">WhatsApp + IA + CRM no automático</span>
+            <span className="relative inline-block size-2 rounded-full bg-[#8FC549] dot-pulse" />
+            <span className="text-white/80 font-semibold">WhatsApp · IA · Chatbot · CRM em um só app</span>
           </div>
 
-          <h1 className="font-display text-[clamp(3rem,10vw,7rem)] leading-[0.92] mt-6 tracking-tight font-black">
-            Sua IA atende o WhatsApp <span className="text-grad">24h</span> e organiza o CRM <span className="text-grad">sozinha</span>.
+          <h1 className="font-display text-[clamp(2.5rem,7.5vw,5.5rem)] leading-[0.95] mt-6 tracking-tight font-black">
+            Atenda e venda pelo WhatsApp com toda a sua equipe em <span className="text-grad">uma só tela</span>.
           </h1>
 
           <p className="mt-6 text-[17px] sm:text-xl text-white/70 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-            Conecte seu número, treine o agente em uma tela e veja cada lead ser respondido na hora,
-            qualificado e movido no funil — sem você levantar o dedo.
+            Caixa de entrada compartilhada, chatbot, inteligência artificial e CRM de vendas — num app
+            que instala no celular e no computador. Feito para quem está começando e para quem já vende
+            todo dia.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3 justify-center lg:justify-start">
             <button
-              onClick={() => onCta("#planos")}
+              onClick={() => onCta("/cadastro")}
               className="group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl text-black font-bold text-[16px] btn-glow"
-              style={{ background: "linear-gradient(135deg,#25D366,#16a34a)" }}
+              style={{ background: "linear-gradient(135deg,#8FC549,#79b23a)" }}
             >
-              Começar 3 dias grátis
+              Começar 14 dias grátis
               <ArrowRight className="size-4 transition group-hover:translate-x-0.5" />
             </button>
             <button
-              onClick={() => onCta("/demo/dashboard")}
+              onClick={() => onCta("#planos")}
               className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl glass-strong text-white/90 hover:bg-white/10 transition text-[16px] font-semibold cursor-pointer"
             >
-              <Play className="size-4" /> Ver demonstração
+              Ver planos
             </button>
           </div>
 
           <ul className="mt-7 flex flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2 text-sm text-white/65 font-medium">
-            <li className="flex items-center gap-1.5"><Check className="size-4 text-[#25D366]" /> 3 dias grátis</li>
-            <li className="flex items-center gap-1.5"><Check className="size-4 text-[#25D366]" /> Conecta em 2 minutos</li>
-            <li className="flex items-center gap-1.5"><Check className="size-4 text-[#25D366]" /> Cancele quando quiser</li>
+            <li className="flex items-center gap-1.5"><Check className="size-4 text-[#8FC549]" /> 14 dias grátis</li>
+            <li className="flex items-center gap-1.5"><Check className="size-4 text-[#8FC549]" /> sem cartão</li>
+            <li className="flex items-center gap-1.5"><Check className="size-4 text-[#8FC549]" /> cancele quando quiser</li>
           </ul>
         </div>
 
@@ -385,7 +386,7 @@ function PhoneMock() {
       {/* glow */}
       <div
         className="absolute -inset-10 rounded-[3rem] blur-3xl opacity-60"
-        style={{ background: "radial-gradient(circle, #25D366 0%, transparent 60%)" }}
+        style={{ background: "radial-gradient(circle, #8FC549 0%, transparent 60%)" }}
       />
       {/* phone */}
       <div
@@ -403,13 +404,13 @@ function PhoneMock() {
           </div>
           {/* chat header */}
           <div className="flex items-center gap-3 px-4 py-3" style={{ background: "var(--lp-chat-header-bg)", borderBottom: "1px solid var(--lp-chat-header-bd)" }}>
-            <div className="grid place-items-center size-9 rounded-full text-black font-bold" style={{ background: "linear-gradient(135deg,#25D366,#16a34a)" }}>
-              A
+            <div className="grid place-items-center size-9 rounded-full text-black font-bold" style={{ background: "linear-gradient(135deg,#8FC549,#79b23a)" }}>
+              C
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-semibold truncate">AtendeZap • IA</div>
-              <div className="text-[10px] text-[#25D366] flex items-center gap-1.5">
-                <span className="size-1.5 rounded-full bg-[#25D366]" /> online agora
+              <div className="text-sm font-semibold truncate">ConectaChat • IA</div>
+              <div className="text-[10px] text-[#8FC549] flex items-center gap-1.5">
+                <span className="size-1.5 rounded-full bg-[#8FC549]" /> online agora
               </div>
             </div>
           </div>
@@ -422,8 +423,8 @@ function PhoneMock() {
               Perfeito 🤌 Tenho quinta 15h ou sexta 10h. Qual prefere?
             </Bubble>
             <div className="flex items-center gap-2 text-[10px] text-white/50 pl-2 reveal" style={{ animationDelay: "1.6s" }}>
-              <Sparkles className="size-3 text-[#25D366]" />
-              respondido pela IA em 3s
+              <Sparkles className="size-3 text-[#8FC549]" />
+              respondido pela IA na hora
             </div>
           </div>
           {/* input */}
@@ -431,7 +432,7 @@ function PhoneMock() {
             <div className="flex-1 h-9 rounded-full px-4 text-xs text-white/40 grid place-items-start content-center" style={{ background: "var(--lp-input-pill)" }}>
               Mensagem
             </div>
-            <div className="size-9 rounded-full grid place-items-center" style={{ background: "#25D366" }}>
+            <div className="size-9 rounded-full grid place-items-center" style={{ background: "#8FC549" }}>
               <ArrowRight className="size-4 text-black" />
             </div>
           </div>
@@ -442,24 +443,24 @@ function PhoneMock() {
       {/* floating CRM card — escondido em telas muito pequenas pra não estourar */}
       <div className="hidden sm:block absolute -left-10 sm:-left-16 bottom-20 glass-strong rounded-2xl p-3.5 w-[220px] shadow-2xl animate-float" style={{ animationDelay: "1.5s" }}>
         <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-white/50 font-semibold">
-          <KanbanSquare className="size-3 text-[#25D366]" />
+          <KanbanSquare className="size-3 text-[#8FC549]" />
           CRM atualizado
         </div>
         <div className="mt-2 flex items-center gap-2.5">
-          <div className="size-9 rounded-full grid place-items-center font-bold text-black" style={{ background: "#a3e635" }}>M</div>
+          <div className="size-9 rounded-full grid place-items-center font-bold text-black" style={{ background: "#8FC549" }}>M</div>
           <div className="min-w-0">
             <div className="text-sm font-semibold truncate">Marina</div>
-            <div className="text-[11px] text-white/55 truncate">8 pessoas → Negociando</div>
+            <div className="text-[11px] text-white/55 truncate">Novo lead → Negociando</div>
           </div>
         </div>
         <div className="mt-3 h-1.5 rounded-full bg-white/10 overflow-hidden">
-          <div className="h-full w-2/3" style={{ background: "linear-gradient(90deg,#25D366,#a3e635)" }} />
+          <div className="h-full w-2/3" style={{ background: "linear-gradient(90deg,#8FC549,#0055A6)" }} />
         </div>
       </div>
 
       {/* floating badge top */}
       <div className="hidden sm:flex absolute -right-6 sm:-right-10 top-12 glass-strong rounded-xl px-3 py-2 items-center gap-2 shadow-2xl animate-float" style={{ animationDelay: "3s" }}>
-        <span className="size-2 rounded-full bg-[#25D366] dot-pulse relative" />
+        <span className="size-2 rounded-full bg-[#8FC549] dot-pulse relative" />
         <span className="text-xs font-medium">Lead respondido</span>
       </div>
     </div>
@@ -478,7 +479,7 @@ function Bubble({ children, side, delay }: { children: React.ReactNode; side: "l
         className={`max-w-[78%] px-3 py-2 text-[13px] leading-snug rounded-2xl ${isRight ? "rounded-br-sm text-black" : "rounded-bl-sm"}`}
         style={
           isRight
-            ? { background: "linear-gradient(135deg,#25D366,#16a34a)", boxShadow: "0 8px 24px -8px rgba(37,211,102,0.5)" }
+            ? { background: "linear-gradient(135deg,#8FC549,#79b23a)", boxShadow: "0 8px 24px -8px rgba(143,197,73,0.5)" }
             : { background: "var(--lp-bubble-left-bg)", border: "1px solid var(--lp-bubble-left-bd)", color: "var(--lp-bubble-left-fg)" }
         }
       >
