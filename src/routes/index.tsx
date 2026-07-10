@@ -946,20 +946,32 @@ function Testimonials() {
 function Faq() {
   const items = [
     {
-      q: "Preciso saber programar?",
-      a: "Não. Você conecta o WhatsApp por QR Code, preenche uma tela contando sobre sua empresa, e a IA já tá atendendo. Quem sabe usar WhatsApp consegue.",
+      q: "Preciso de cartão para testar?",
+      a: "Não. São 14 dias grátis, sem cartão. O cartão só entra se você decidir continuar.",
     },
     {
-      q: "Funciona com vários atendentes?",
-      a: "Funciona. Você convida sua equipe, cada um com seu acesso. A IA atende o que dá pra atender; o que precisa de humano, o time assume.",
+      q: "Como funciona a conexão com o WhatsApp?",
+      a: "Hoje, você conecta lendo um QR Code, como no WhatsApp Web. É rápido, mas é uma conexão não oficial: você é responsável por seguir as regras da Meta e evitar spam. Para quem quer a via 100% oficial, o WhatsApp Oficial (API da Meta) está em entrega.",
     },
     {
-      q: "A IA responde igual um robô?",
-      a: "Não. Ela é treinada pra falar como gente — mensagens curtas, uma pergunta por vez, no tom da sua empresa. Em testes cegos, cliente nem percebe.",
+      q: "O que conta como “canal”?",
+      a: "Cada número de WhatsApp, conta de Instagram ou página de Messenger que você conectar conta como um canal.",
     },
     {
-      q: "Meu número fica seguro?",
-      a: "Sim. Cada empresa tem ambiente isolado, dados criptografados e você é dono da conversa. Você pode desconectar a qualquer momento.",
+      q: "A inteligência artificial tem custo extra?",
+      a: "A IA usa a chave da sua própria conta (OpenAI, Gemini ou Claude). Você paga o provedor pelo seu uso, e não cobramos nada por cima disso.",
+    },
+    {
+      q: "Posso cancelar quando quiser?",
+      a: "Sim. Você cancela a qualquer momento e evita as próximas cobranças. E temos garantia de reembolso de 30 dias.",
+    },
+    {
+      q: "Meus dados e os dos meus clientes estão seguros?",
+      a: "Sim. Cada empresa tem seus dados isolados dos demais, e tratamos tudo conforme a LGPD.",
+    },
+    {
+      q: "O preço de fundador é para sempre?",
+      a: "O preço de fundador fica travado por 12 meses a partir da sua contratação, enquanto você for cliente ativo.",
     },
   ];
   const [open, setOpen] = useState<number | null>(0);
@@ -974,7 +986,7 @@ function Faq() {
               <div key={it.q} className="glass border-sheen rounded-2xl overflow-hidden reveal" data-reveal>
                 <button onClick={() => setOpen(isOpen ? null : i)} className="w-full px-5 py-4 flex items-center justify-between gap-4 text-left">
                   <span className="font-semibold">{it.q}</span>
-                  <span className="size-7 grid place-items-center rounded-full shrink-0" style={{ background: "rgba(37,211,102,0.15)", color: "#25D366" }}>
+                  <span className="size-7 grid place-items-center rounded-full shrink-0" style={{ background: "rgba(143,197,73,0.15)", color: "#8FC549" }}>
                     {isOpen ? <Minus className="size-4" /> : <Plus className="size-4" />}
                   </span>
                 </button>
