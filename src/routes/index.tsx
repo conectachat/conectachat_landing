@@ -8,7 +8,6 @@ import {
   MessageSquareText,
   Bot,
   KanbanSquare,
-  Users,
   Star,
   ArrowRight,
   Plus,
@@ -20,6 +19,10 @@ import {
   Share2,
   Inbox,
   MonitorSmartphone,
+  Megaphone,
+  ShoppingBag,
+  BarChart3,
+  Puzzle,
 } from "lucide-react";
 
 
@@ -580,18 +583,20 @@ function HowItWorks() {
 /* ===================== FEATURES ===================== */
 function Features() {
   const items = [
-    { t: "Caixa de entrada compartilhada", d: "Toda a equipe atende do mesmo lugar, com filas e transferência de conversa entre atendentes.", icon: <Inbox className="size-5" /> },
-    { t: "Chatbot visual", d: "Monte fluxos de atendimento arrastando e soltando. Sem código, no ritmo da sua operação.", icon: <Share2 className="size-5" /> },
-    { t: "Atendente de IA com sua chave", d: "Conecte sua própria chave da OpenAI, Gemini ou Claude. A IA responde no tom da sua empresa.", icon: <Bot className="size-5" /> },
-    { t: "CRM de vendas em Kanban", d: "Cada conversa vira um card. Arraste pelas etapas do funil e acompanhe o que está aberto.", icon: <KanbanSquare className="size-5" /> },
-    { t: "Multi-atendente", d: "Convide seu time e defina papéis e permissões. Cada pessoa vê o que precisa.", icon: <Users className="size-5" /> },
-    { t: "Instala no celular e no PC", d: "É um PWA: abre como app no smartphone e no computador, sem loja de aplicativos.", icon: <MonitorSmartphone className="size-5" /> },
+    { t: "Caixa de entrada única", d: "Toda a equipe atende do mesmo lugar, com filas, transferência e abas (IA / Aguardando / Minhas / Todas).", icon: <Inbox className="size-5" /> },
+    { t: "Chatbot visual", d: "Monte fluxos de atendimento arrastando e soltando, sem programar.", icon: <Share2 className="size-5" /> },
+    { t: "Atendente de IA", d: "Robôs com a personalidade da sua empresa, usando OpenAI, Gemini ou Claude com a sua própria chave.", icon: <Bot className="size-5" /> },
+    { t: "CRM de vendas (Kanban)", d: "Acompanhe cada negócio, do primeiro “oi” ao fechamento, num quadro visual.", icon: <KanbanSquare className="size-5" /> },
+    { t: "Campanhas em massa", d: "Dispare mensagens para listas com proteção anti-banimento e agendamento.", icon: <Megaphone className="size-5" /> },
+    { t: "Catálogo de produtos", d: "Envie produtos com foto e preço direto na conversa.", icon: <ShoppingBag className="size-5" /> },
+    { t: "Relatórios", d: "Veja atendimentos por dia, por atendente e por canal.", icon: <BarChart3 className="size-5" /> },
+    { t: "Integrações", d: "Conecte os apps que você já usa no dia a dia e automatize seu fluxo de trabalho.", icon: <Puzzle className="size-5" /> },
   ];
   return (
     <section id="recursos" className="px-5 md:px-8 py-24 md:py-28">
       <div className="mx-auto max-w-6xl">
-        <SectionTitle eyebrow="Recursos" title={<>Atendimento, chatbot, IA e CRM <span className="text-grad">num app só</span>.</>} />
-        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <SectionTitle eyebrow="Funcionalidades" title={<>Tudo em <span className="text-grad">um só lugar</span>.</>} />
+        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {items.map((it) => (
             <div key={it.t} className="glass border-sheen rounded-2xl p-6 hover:-translate-y-1 transition-transform reveal" data-reveal>
               <div className="size-11 rounded-xl grid place-items-center" style={{ background: "rgba(143,197,73,0.15)", color: "#8FC549" }}>
