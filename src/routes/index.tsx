@@ -21,10 +21,6 @@ import {
   ShoppingBag,
   BarChart3,
   Puzzle,
-  MessageCircle,
-  Instagram,
-  Facebook,
-  Send,
 } from "lucide-react";
 
 
@@ -101,7 +97,6 @@ function Landing() {
         <Pain />
         <HowItWorks />
         <Features />
-        <Channels />
         <AiEdge />
         <Pricing onCta={cta} />
         <IncludedInAll />
@@ -615,51 +610,6 @@ function Features() {
               </div>
               <h3 className="font-display text-lg mt-4">{it.t}</h3>
               <p className="text-white/65 text-sm mt-2 leading-relaxed">{it.d}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ===================== CHANNELS ===================== */
-function Channels() {
-  const channels = [
-    { t: "WhatsApp (QR)", icon: <MessageCircle className="size-5" />, label: "Disponível", color: "#8FC549", bg: "rgba(143,197,73,0.15)" },
-    { t: "WhatsApp Oficial (API Meta)", icon: <MessageCircle className="size-5" />, label: "Em entrega", color: "#f59e0b", bg: "rgba(245,158,11,0.15)" },
-    { t: "Instagram Direct", icon: <Instagram className="size-5" />, label: "Em breve", color: null as string | null, bg: null as string | null },
-    { t: "Messenger", icon: <Facebook className="size-5" />, label: "Em breve", color: null as string | null, bg: null as string | null },
-    { t: "Telegram", icon: <Send className="size-5" />, label: "Em breve", color: null as string | null, bg: null as string | null },
-  ];
-  return (
-    <section className="px-5 md:px-8 py-24 md:py-28">
-      <div className="mx-auto max-w-4xl text-center">
-        <SectionTitle
-          eyebrow="Canais"
-          title={<>Comece pelo WhatsApp. Cresça para <span className="text-grad">onde seu cliente estiver</span>.</>}
-        />
-        <p className="mt-6 text-lg text-white/65 leading-relaxed max-w-2xl mx-auto reveal" data-reveal>
-          Conecte seu WhatsApp em minutos, lendo um QR Code. Em breve, também Instagram Direct,
-          Facebook Messenger e Telegram — todos na mesma caixa de entrada. E, para quem quer a via
-          oficial, o WhatsApp Oficial (API da Meta) está em entrega.
-        </p>
-        <div className="mt-10 flex flex-wrap justify-center gap-3 reveal" data-reveal>
-          {channels.map((c) => (
-            <div key={c.t} className="glass rounded-2xl px-4 py-3 flex items-center gap-3">
-              <span
-                className="size-9 rounded-xl grid place-items-center shrink-0"
-                style={{ background: c.bg ?? "rgba(var(--lp-fg-rgb),0.08)", color: c.color ?? "rgba(var(--lp-fg-rgb),0.5)" }}
-              >
-                {c.icon}
-              </span>
-              <div className="text-left">
-                <div className="text-sm font-semibold">{c.t}</div>
-                <div className="text-[11px] font-semibold flex items-center gap-1.5" style={{ color: c.color ?? "rgba(var(--lp-fg-rgb),0.5)" }}>
-                  <span className="size-1.5 rounded-full" style={{ background: c.color ?? "rgba(var(--lp-fg-rgb),0.4)" }} />
-                  {c.label}
-                </div>
-              </div>
             </div>
           ))}
         </div>
