@@ -754,8 +754,6 @@ function Pricing({ onCta }: { onCta: (p: "/entrar" | "/cadastro" | "/demo/dashbo
     "Canal = cada número de WhatsApp, conta de Instagram ou página de Messenger conectada.",
     "*Planos “ilimitados” seguem política de uso justo.",
     "Preço de fundador travado por 12 meses para quem entrar entre os 100 primeiros.",
-    "Pague no anual via Pix e economize ~17%.",
-    "Cartão exigido só na contratação após o teste. Cancele em até 30 dias e devolvemos seu dinheiro.",
   ];
   return (
     <section id="planos" className="px-5 md:px-8 py-24 md:py-28">
