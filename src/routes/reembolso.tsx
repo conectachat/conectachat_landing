@@ -4,7 +4,7 @@ export const Route = createFileRoute("/reembolso")({
   head: () => ({
     meta: [
       { title: "Política de Reembolso — ConectaChat" },
-      { name: "description", content: "Teste grátis de 14 dias e garantia de satisfação de 30 dias. Saiba como solicitar reembolso." },
+      { name: "description", content: "Teste grátis de 14 dias, sem cartão, e direito de arrependimento de 7 dias garantido por lei. Saiba como solicitar reembolso." },
     ],
   }),
   component: ReembolsoPage,
@@ -29,16 +29,16 @@ function ReembolsoPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-900">Garantia de 30 dias</h2>
+            <h2 className="text-xl font-semibold text-slate-900">Direito de arrependimento de 7 dias</h2>
             <p className="mt-2">
-              O ConectaChat oferece uma <strong>garantia de satisfação de 30 dias</strong>. Se você não
-              estiver satisfeito com sua compra, pode solicitar reembolso integral em até <strong>30 dias
-              a partir da data do pagamento</strong>.
+              Como você avalia o ConectaChat com 14 dias grátis antes de qualquer cobrança, a plataforma
+              não oferece garantia de reembolso adicional além do direito legal. Ainda assim, o{" "}
+              <strong>Código de Defesa do Consumidor</strong> assegura o <strong>direito de arrependimento
+              em até 7 dias</strong> a partir da contratação, em compras feitas pela internet.
             </p>
-            <p className="mt-3 border-l-4 border-slate-200 pl-4 text-slate-600">
-              Independentemente desta garantia, o Código de Defesa do Consumidor assegura ao consumidor o
-              direito de arrependimento em até <strong>7 dias</strong> a partir da contratação em compras
-              feitas pela internet. Nossa garantia de 30 dias é mais ampla que o mínimo legal.
+            <p className="mt-3">
+              Se você se arrepender dentro desse prazo de <strong>7 dias a partir do pagamento</strong>,
+              pode solicitar o reembolso integral do valor pago.
             </p>
           </section>
 
@@ -68,17 +68,17 @@ function ReembolsoPage() {
             <p className="mt-2">
               Você pode cancelar sua assinatura a qualquer momento, pela sua conta ou pelo suporte, para
               evitar renovações futuras. Cobranças de renovação são elegíveis a reembolso quando a
-              solicitação ocorrer dentro do período de <strong>30 dias da fatura correspondente</strong>,
-              conforme esta política.
+              solicitação ocorrer dentro do prazo de arrependimento de <strong>7 dias da fatura
+              correspondente</strong>, conforme esta política.
             </p>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold text-slate-900">Planos anuais pagos via Pix</h2>
             <p className="mt-2">
-              Para planos anuais pagos via Pix, aplica-se a mesma garantia de 30 dias a partir do
-              pagamento. Reembolsos de Pix são processados para a conta de origem, conforme as regras
-              aplicáveis.
+              Para planos anuais pagos via Pix, aplica-se o mesmo direito de arrependimento de 7 dias a
+              partir do pagamento. Reembolsos de Pix são processados para a conta de origem, conforme as
+              regras aplicáveis.
             </p>
           </section>
 

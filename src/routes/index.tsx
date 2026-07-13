@@ -915,7 +915,7 @@ function Faq() {
     },
     {
       q: "Posso cancelar quando quiser?",
-      a: "Sim. Você cancela a qualquer momento e evita as próximas cobranças. E temos garantia de reembolso de 30 dias.",
+      a: "Sim. Você cancela a qualquer momento e evita as próximas cobranças. E você ainda testa 14 dias grátis, sem cartão, antes de qualquer cobrança.",
     },
     {
       q: "Meus dados e os dos meus clientes estão seguros?",
