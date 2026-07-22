@@ -13,6 +13,9 @@ import { Route as TermosRouteImport } from './routes/termos'
 import { Route as ReembolsoRouteImport } from './routes/reembolso'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AjudaIndexRouteImport } from './routes/ajuda.index'
+import { Route as AjudaCategoriaIndexRouteImport } from './routes/ajuda.$categoria.index'
+import { Route as AjudaCategoriaSlugRouteImport } from './routes/ajuda.$categoria.$slug'
 
 const TermosRoute = TermosRouteImport.update({
   id: '/termos',
@@ -34,18 +37,39 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AjudaIndexRoute = AjudaIndexRouteImport.update({
+  id: '/ajuda/',
+  path: '/ajuda/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AjudaCategoriaIndexRoute = AjudaCategoriaIndexRouteImport.update({
+  id: '/ajuda/$categoria/',
+  path: '/ajuda/$categoria/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AjudaCategoriaSlugRoute = AjudaCategoriaSlugRouteImport.update({
+  id: '/ajuda/$categoria/$slug',
+  path: '/ajuda/$categoria/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/privacidade': typeof PrivacidadeRoute
   '/reembolso': typeof ReembolsoRoute
   '/termos': typeof TermosRoute
+  '/ajuda/': typeof AjudaIndexRoute
+  '/ajuda/$categoria/$slug': typeof AjudaCategoriaSlugRoute
+  '/ajuda/$categoria/': typeof AjudaCategoriaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/privacidade': typeof PrivacidadeRoute
   '/reembolso': typeof ReembolsoRoute
   '/termos': typeof TermosRoute
+  '/ajuda': typeof AjudaIndexRoute
+  '/ajuda/$categoria/$slug': typeof AjudaCategoriaSlugRoute
+  '/ajuda/$categoria': typeof AjudaCategoriaIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +77,38 @@ export interface FileRoutesById {
   '/privacidade': typeof PrivacidadeRoute
   '/reembolso': typeof ReembolsoRoute
   '/termos': typeof TermosRoute
+  '/ajuda/': typeof AjudaIndexRoute
+  '/ajuda/$categoria/$slug': typeof AjudaCategoriaSlugRoute
+  '/ajuda/$categoria/': typeof AjudaCategoriaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/privacidade' | '/reembolso' | '/termos'
+  fullPaths:
+    | '/'
+    | '/privacidade'
+    | '/reembolso'
+    | '/termos'
+    | '/ajuda/'
+    | '/ajuda/$categoria/$slug'
+    | '/ajuda/$categoria/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/privacidade' | '/reembolso' | '/termos'
-  id: '__root__' | '/' | '/privacidade' | '/reembolso' | '/termos'
+  to:
+    | '/'
+    | '/privacidade'
+    | '/reembolso'
+    | '/termos'
+    | '/ajuda'
+    | '/ajuda/$categoria/$slug'
+    | '/ajuda/$categoria'
+  id:
+    | '__root__'
+    | '/'
+    | '/privacidade'
+    | '/reembolso'
+    | '/termos'
+    | '/ajuda/'
+    | '/ajuda/$categoria/$slug'
+    | '/ajuda/$categoria/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +116,9 @@ export interface RootRouteChildren {
   PrivacidadeRoute: typeof PrivacidadeRoute
   ReembolsoRoute: typeof ReembolsoRoute
   TermosRoute: typeof TermosRoute
+  AjudaIndexRoute: typeof AjudaIndexRoute
+  AjudaCategoriaSlugRoute: typeof AjudaCategoriaSlugRoute
+  AjudaCategoriaIndexRoute: typeof AjudaCategoriaIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +151,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ajuda/': {
+      id: '/ajuda/'
+      path: '/ajuda'
+      fullPath: '/ajuda/'
+      preLoaderRoute: typeof AjudaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ajuda/$categoria/': {
+      id: '/ajuda/$categoria/'
+      path: '/ajuda/$categoria'
+      fullPath: '/ajuda/$categoria/'
+      preLoaderRoute: typeof AjudaCategoriaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ajuda/$categoria/$slug': {
+      id: '/ajuda/$categoria/$slug'
+      path: '/ajuda/$categoria/$slug'
+      fullPath: '/ajuda/$categoria/$slug'
+      preLoaderRoute: typeof AjudaCategoriaSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +180,9 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacidadeRoute: PrivacidadeRoute,
   ReembolsoRoute: ReembolsoRoute,
   TermosRoute: TermosRoute,
+  AjudaIndexRoute: AjudaIndexRoute,
+  AjudaCategoriaSlugRoute: AjudaCategoriaSlugRoute,
+  AjudaCategoriaIndexRoute: AjudaCategoriaIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

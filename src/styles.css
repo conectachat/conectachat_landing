@@ -49,8 +49,15 @@
   --color-brand-strong: var(--brand-strong);
   --color-brand-master: var(--brand-master);
   --color-surface: var(--surface);
+  --color-panel: var(--panel);
   --color-panel-2: var(--panel-2);
   --color-sidebar-bg: var(--sidebar-bg);
+  /* Acabamento (linha fina + destaque suave da marca) — usados pela Central de Ajuda. */
+  --color-hairline: var(--hairline);
+  --color-hairline-strong: var(--hairline-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-soft-strong: var(--brand-soft-strong);
+  --color-brand-text: var(--brand-text);
   --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
 }

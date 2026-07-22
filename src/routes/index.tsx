@@ -1009,6 +1009,7 @@ function Footer() {
             <ul className="mt-4 space-y-2.5 text-sm text-white/65">
               <li><a href="#recursos" className="hover:text-white">Funcionalidades</a></li>
               <li><a href="#planos" className="hover:text-white">Preços</a></li>
+              <li><a href="/ajuda" className="hover:text-white">Ajuda</a></li>
               <li><a href={appLoginUrl} className="hover:text-white">Entrar</a></li>
             </ul>
           </div>
