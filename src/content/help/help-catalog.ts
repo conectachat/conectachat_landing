@@ -2,11 +2,17 @@ import {
   Rocket,
   Plug,
   Inbox,
+  Contact,
   Bot,
   Workflow,
   SquareKanban,
   Megaphone,
+  BarChart3,
+  Package,
+  Users,
+  MessagesSquare,
   Blocks,
+  Code2,
   CreditCard,
   type LucideIcon,
 } from "lucide-react";
@@ -56,6 +62,13 @@ export const HELP_CATEGORIES: HelpCategory[] = [
     color: "#0891B2",
   },
   {
+    slug: "contatos",
+    title: "Contatos",
+    description: "Cadastrar, importar, etiquetar e organizar quem fala com você.",
+    icon: Contact,
+    color: "#2563EB",
+  },
+  {
     slug: "agentes-ia",
     title: "Agentes de IA",
     description: "Crie um atendente virtual que responde sozinho e chama um humano quando precisa.",
@@ -84,11 +97,46 @@ export const HELP_CATEGORIES: HelpCategory[] = [
     color: "#D97706",
   },
   {
+    slug: "relatorios",
+    title: "Relatórios",
+    description: "Os números do atendimento e das vendas, sem planilha.",
+    icon: BarChart3,
+    color: "#4F46E5",
+  },
+  {
+    slug: "catalogo",
+    title: "Catálogo",
+    description: "Seus produtos e serviços prontos para enviar na conversa.",
+    icon: Package,
+    color: "#B45309",
+  },
+  {
+    slug: "equipe-e-organizacao",
+    title: "Equipe e organização",
+    description: "Departamentos, filas, distribuição, horários e permissões.",
+    icon: Users,
+    color: "#0369A1",
+  },
+  {
+    slug: "ferramentas-da-equipe",
+    title: "Ferramentas da equipe",
+    description: "Chat interno entre colegas e como falar com o nosso suporte.",
+    icon: MessagesSquare,
+    color: "#9333EA",
+  },
+  {
     slug: "integracoes",
     title: "Integrações",
     description: "Conecte agenda, IA, API e outras ferramentas ao ConectaChat.",
     icon: Blocks,
     color: "#0F766E",
+  },
+  {
+    slug: "api",
+    title: "API e desenvolvedores",
+    description: "Ligue o ConectaChat ao seu sistema com chaves e webhooks.",
+    icon: Code2,
+    color: "#334155",
   },
   {
     slug: "planos",
@@ -120,6 +168,19 @@ export const HELP_ARTICLES: HelpArticle[] = [
     description: "Adicione atendentes, defina permissões e organize por departamento.",
   },
 
+  {
+    slug: "instalar-o-app",
+    category: "primeiros-passos",
+    title: "Instalar o aplicativo no celular e no computador",
+    description: "Tela cheia, ícone próprio e notificações melhores — sem loja de aplicativos.",
+  },
+  {
+    slug: "notificacoes",
+    category: "primeiros-passos",
+    title: "Notificações: som, push e o sininho",
+    description: "As três formas de aviso, quem recebe cada uma e como ativar em cada aparelho.",
+  },
+
   // --- Conexões ---
   {
     slug: "conectar-whatsapp-qr",
@@ -138,6 +199,19 @@ export const HELP_ARTICLES: HelpArticle[] = [
     category: "conexoes",
     title: "QR Code ou WhatsApp Oficial: qual escolher?",
     description: "As diferenças de custo, risco e recursos entre os dois canais.",
+  },
+
+  {
+    slug: "modelos-aprovados",
+    category: "conexoes",
+    title: "Modelos aprovados pela Meta",
+    description: "Criar, aprovar e usar os templates — obrigatórios fora da janela de 24 horas.",
+  },
+  {
+    slug: "janela-de-24-horas",
+    category: "conexoes",
+    title: "A janela de 24 horas do WhatsApp Oficial",
+    description: "A regra que mais confunde: quando dá para escrever livre e quando só modelo.",
   },
 
   // --- Caixa de entrada ---
@@ -160,6 +234,51 @@ export const HELP_ARTICLES: HelpArticle[] = [
     description: "Salve mensagens que você repete todo dia e envie com dois cliques.",
   },
 
+  {
+    slug: "organizando-a-caixa",
+    category: "caixa-de-entrada",
+    title: "Abas, filtros e número de chamado",
+    description: "Como não perder cliente quando o volume de conversas cresce.",
+  },
+  {
+    slug: "buscar-conversas-e-mensagens",
+    category: "caixa-de-entrada",
+    title: "Buscar conversas e mensagens",
+    description: "Ache a pessoa, a conversa ou aquela mensagem específica — até dentro de áudios.",
+  },
+  {
+    slug: "agendar-mensagem",
+    category: "caixa-de-entrada",
+    title: "Agendar uma mensagem",
+    description: "Programe o envio para a data e a hora certas, com anexo se precisar.",
+  },
+  {
+    slug: "audios-e-transcricao",
+    category: "caixa-de-entrada",
+    title: "Áudios e transcrição",
+    description: "Áudio do cliente vira texto — para você ler rápido e a IA entender.",
+  },
+
+  // --- Contatos ---
+  {
+    slug: "cadastrar-e-importar",
+    category: "contatos",
+    title: "Cadastrar e importar contatos",
+    description: "Um a um ou uma planilha inteira, com validação de número e sem duplicar.",
+  },
+  {
+    slug: "etiquetas-e-listas",
+    category: "contatos",
+    title: "Etiquetas e listas",
+    description: "As duas formas de agrupar gente — e quando usar cada uma.",
+  },
+  {
+    slug: "bloquear-e-descadastro",
+    category: "contatos",
+    title: "Bloquear contatos e descadastro automático",
+    description: "Quem responde “sair” para de receber na hora. Por que isso protege seu número.",
+  },
+
   // --- Agentes de IA ---
   {
     slug: "criando-um-agente",
@@ -174,12 +293,62 @@ export const HELP_ARTICLES: HelpArticle[] = [
     description: "Transferência automática, palavras-gatilho e o botão de desligar.",
   },
 
+  {
+    slug: "escolher-a-ia",
+    category: "agentes-ia",
+    title: "Escolher a IA e cadastrar a chave",
+    description: "Gemini, OpenAI, Claude ou Grok: qual usar, quanto custa e onde tem opção grátis.",
+  },
+  {
+    slug: "base-de-conhecimento",
+    category: "agentes-ia",
+    title: "Base de conhecimento do agente",
+    description: "O que ele sabe: texto, arquivos e planilhas que se atualizam sozinhas.",
+  },
+  {
+    slug: "criar-com-entrevista",
+    category: "agentes-ia",
+    title: "Criar um agente por entrevista",
+    description: "Descreva seu negócio e a IA monta personalidade e base de conhecimento.",
+  },
+  {
+    slug: "testar-o-agente",
+    category: "agentes-ia",
+    title: "Testar o agente antes de ligar",
+    description: "Simule uma conversa, veja o prompt gerado e corrija o que estiver errado.",
+  },
+  {
+    slug: "humanizacao-e-limites",
+    category: "agentes-ia",
+    title: "Humanização, anti-loop e proteção do número",
+    description: "Pausas, “digitando…”, limite de respostas e o silêncio depois do humano.",
+  },
+
   // --- Fluxos ---
   {
     slug: "montando-um-fluxo",
     category: "fluxos",
     title: "Montando seu primeiro fluxo",
     description: "Gatilho, mensagens, menu de opções e ações — na prática.",
+  },
+
+  {
+    slug: "gatilhos-do-fluxo",
+    category: "fluxos",
+    title: "Gatilhos: o que faz o fluxo começar",
+    description: "Palavra-chave, primeira mensagem, etiqueta, etapa do CRM, webhook ou manual.",
+  },
+  {
+    slug: "tipos-de-blocos",
+    category: "fluxos",
+    title: "Os blocos disponíveis",
+    description: "Mensagens, menus, condições, ações e integrações — o mapa da paleta.",
+  },
+  {
+    slug: "acionar-fluxo-manualmente",
+    category: "fluxos",
+    title: "Acionar um fluxo na conversa",
+    description: "Dispare um roteiro pronto — cobrança, pesquisa, coleta de dados — quando quiser.",
   },
 
   // --- CRM ---
@@ -196,6 +365,31 @@ export const HELP_ARTICLES: HelpArticle[] = [
     description: "Descubra quais negócios estão quentes e atenda primeiro quem importa.",
   },
 
+  {
+    slug: "tarefas-e-historico",
+    category: "crm",
+    title: "Tarefas, histórico e arquivos do negócio",
+    description: "O próximo passo com data e responsável, e tudo que já aconteceu registrado.",
+  },
+  {
+    slug: "campos-personalizados",
+    category: "crm",
+    title: "Campos personalizados",
+    description: "Guarde as informações que só o seu negócio precisa, no contato ou no negócio.",
+  },
+  {
+    slug: "automatizar-com-fluxos",
+    category: "crm",
+    title: "Automatizar o funil",
+    description: "Conversa nova vira lead, e o fluxo cria, move e fecha cartões sozinho.",
+  },
+  {
+    slug: "relatorio-de-vendas",
+    category: "crm",
+    title: "Relatório de vendas",
+    description: "Taxa de fechamento, valor ganho, ciclo médio e os motivos de perda.",
+  },
+
   // --- Campanhas ---
   {
     slug: "primeira-campanha",
@@ -210,12 +404,131 @@ export const HELP_ARTICLES: HelpArticle[] = [
     description: "As regras de ouro do disparo em massa no WhatsApp.",
   },
 
+  {
+    slug: "publicos-e-listas",
+    category: "campanhas",
+    title: "Escolhendo o público",
+    description: "Etiqueta, lista ou todos — e as variáveis que personalizam a mensagem.",
+  },
+  {
+    slug: "campanha-no-canal-oficial",
+    category: "campanhas",
+    title: "Campanha pelo canal Oficial",
+    description: "Só com modelo aprovado, com teto diário da Meta e custo por mensagem.",
+  },
+
+  // --- Relatórios ---
+  {
+    slug: "entendendo-o-dashboard",
+    category: "relatorios",
+    title: "Entendendo os números do Dashboard",
+    description: "O que cada indicador diz e as combinações que revelam problema na operação.",
+  },
+  {
+    slug: "filtrar-e-exportar",
+    category: "relatorios",
+    title: "Períodos, filtros e exportação",
+    description: "Faça a pergunta certa aos dados e leve os números para fora em CSV.",
+  },
+
+  // --- Catálogo ---
+  {
+    slug: "montando-o-catalogo",
+    category: "catalogo",
+    title: "Montando o catálogo",
+    description: "Cadastre produtos e serviços com foto, preço, categoria e link de pagamento.",
+  },
+  {
+    slug: "enviar-produto-na-conversa",
+    category: "catalogo",
+    title: "Enviar um produto na conversa",
+    description: "Foto, preço e link em dois cliques, sempre com a mesma apresentação.",
+  },
+
+  // --- Equipe e organização ---
+  {
+    slug: "departamentos-e-filas",
+    category: "equipe-e-organizacao",
+    title: "Departamentos e filas",
+    description: "Separe o atendimento por assunto e faça a conversa chegar no time certo.",
+  },
+  {
+    slug: "distribuicao-automatica",
+    category: "equipe-e-organizacao",
+    title: "Distribuição automática de conversas",
+    description: "Rodízio ou por carga de trabalho, respeitando quem está no horário.",
+  },
+  {
+    slug: "horarios-de-atendimento",
+    category: "equipe-e-organizacao",
+    title: "Horários de atendimento",
+    description: "O seu horário, o do departamento e a mensagem de fora do expediente.",
+  },
+  {
+    slug: "papeis-e-permissoes",
+    category: "equipe-e-organizacao",
+    title: "Papéis e permissões",
+    description: "Proprietário, administrador e atendente: o que cada um vê e pode fazer.",
+  },
+
+  // --- Ferramentas da equipe ---
+  {
+    slug: "chat-interno",
+    category: "ferramentas-da-equipe",
+    title: "Chat interno da equipe",
+    description: "Converse com os colegas dentro do app, sem misturar com o WhatsApp pessoal.",
+  },
+  {
+    slug: "falar-com-o-suporte",
+    category: "ferramentas-da-equipe",
+    title: "Falar com o suporte da ConectaChat",
+    description: "Onde abrir chamado, o que informar e como ser atendido mais rápido.",
+  },
+
   // --- Integrações ---
   {
     slug: "conectando-ferramentas",
     category: "integracoes",
     title: "Conectando outras ferramentas",
     description: "IA, Calendly, Google Agenda, planilhas e a API para o seu sistema.",
+  },
+  {
+    slug: "calendly",
+    category: "integracoes",
+    title: "Calendly",
+    description: "Agende na conversa e mande confirmação, lembrete e cancelamento pelo WhatsApp.",
+  },
+  {
+    slug: "google-agenda",
+    category: "integracoes",
+    title: "Google Agenda",
+    description: "Mostra só os horários livres, cria o evento com Meet e avisa o cliente.",
+  },
+  {
+    slug: "planilhas-e-documentos",
+    category: "integracoes",
+    title: "Planilhas e documentos do Google",
+    description: "Sua tabela de preços vira a fonte do agente — e se atualiza sozinha.",
+  },
+  {
+    slug: "n8n-e-automacoes",
+    category: "integracoes",
+    title: "n8n e outras automações",
+    description: "Ligue o ConectaChat ao seu ERP, loja ou planilha sem programar.",
+  },
+
+  // --- API ---
+  {
+    slug: "chaves-de-api",
+    category: "api",
+    title: "Chaves de API",
+    description: "Crie chaves com permissões específicas para o seu sistema usar o ConectaChat.",
+  },
+  {
+    slug: "webhooks-de-saida",
+    category: "api",
+    title: "Webhooks de saída",
+    description: "O ConectaChat avisa o seu sistema quando algo acontece, com assinatura segura.",
   },
 
   // --- Planos ---
@@ -224,6 +537,18 @@ export const HELP_ARTICLES: HelpArticle[] = [
     category: "planos",
     title: "Planos, limites e upgrade",
     description: "O que cada plano libera e como mudar quando sua operação crescer.",
+  },
+  {
+    slug: "gerenciar-assinatura",
+    category: "planos",
+    title: "Gerenciar a assinatura",
+    description: "Teste grátis, assinar, trocar de plano, mudar o cartão e cancelar.",
+  },
+  {
+    slug: "limite-atingido",
+    category: "planos",
+    title: "Quando o limite do plano é atingido",
+    description: "O que trava, o que nunca trava e o que fazer antes de subir de plano.",
   },
 ];
 
